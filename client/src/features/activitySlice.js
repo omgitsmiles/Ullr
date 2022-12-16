@@ -9,8 +9,20 @@ export const fetchActivities = createAsyncThunk("activities/fetchActivites", () 
 const activitiesSlice = createSlice({
     name: "activities",
     initialState:  {
-        entities: [],
+        activities: [],
         status: "idle",
+    },
+    reducers: {
+        activityAdded(state, action) {
+            state.activities.push(action.payload)
+        },
+        activityUpdated(state, action) {
+            const activity = state.activities.find(activity => activity.id === action.payload.id)
+            state.activities[activity] = action.payload
+        },
+        activityRemoved(state, action) {
+            state.activities.filter(activity => activity !== action.payload)
+        }
     },
     extraReducers: {
             [fetchActivities.pending](state) {
