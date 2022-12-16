@@ -1,25 +1,25 @@
-import { createAsyncThunk ,createSlice } from "@reduxjs/toolkit";
+// import { createAsyncThunk ,createSlice } from "@reduxjs/toolkit";
 
-export const fetchUser = createAsyncThunk("user/fetchUser", () => {
-    return fetch("/login")
-    .then(r => r.json)
-    .then(user => user)
-})
+// export const fetchUser = createAsyncThunk("user/fetchUser", () => {
+//     return fetch("/login")
+//     .then(r => r.json)
+//     .then(user => user)
+// })
 
-const userSlice = createSlice({
-    name: "user",
-    initialState: {
-        entity: {}
-    },
-    extraReducers: {
-        [fetchUser.pending](state) {
-            state.status = "loading"
-        },
-        [fetchUser.fulfilled](state, action) {
-            state.entity = action.payload
-            state.status = "idle"
-        },
-    }
-})
+// const userSlice = createSlice({
+//     name: "user",
+//     initialState: {
+//         entity: {}
+//     },
+//     extraReducers: {
+//         [fetchUser.pending](state) {
+//             state.status = "loading"
+//         },
+//         [fetchUser.fulfilled](state, action) {
+//             state.entity = action.payload
+//             state.status = "idle"
+//         },
+//     }
+// })
 
-export default userSlice.extraReducers
+// export default userSlice.extraReducers

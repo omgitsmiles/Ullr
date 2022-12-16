@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { login, selectUser } from '../features/sessionSlice';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,10 +31,16 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+    const user = useSelector(selectUser)
+    const dispatch = useDispatch()
+    const [error, setError] = useState([])
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
+
+    console.log(user)
+    console.log(error.error)
 
     const handleChange = (e) => {
         setFormData({
@@ -43,12 +51,23 @@ export default function Login() {
   
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
-    };
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(r => {
+            if (r.ok) {
+                r.json()
+                .then(user => dispatch(login(user)))
+            } else {
+                r.json()
+                .then(e => setError(e))
+            }
+        })
+    }
 
   return (
     <ThemeProvider theme={theme}>
