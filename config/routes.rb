@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  resources :matches
+  resources :messages
   resources :posts
   resources :groups
   resources :activities
