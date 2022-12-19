@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { login, selectUser } from '../features/sessionSlice';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,7 @@ import Grid from '@mui/material/Grid';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { allActivities } from '../features/activitiesSlice';
 
 function Copyright(props) {
   return (
@@ -34,13 +36,11 @@ export default function Login() {
     const user = useSelector(selectUser)
     const dispatch = useDispatch()
     const [error, setError] = useState([])
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username: "",
         password: "",
     })
-
-    console.log(user)
-    console.log(error.error)
 
     const handleChange = (e) => {
         setFormData({
@@ -54,7 +54,7 @@ export default function Login() {
         fetch("/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type" : "application/json"
             },
             body: JSON.stringify(formData)
         })
@@ -62,12 +62,16 @@ export default function Login() {
             if (r.ok) {
                 r.json()
                 .then(user => dispatch(login(user)))
+                navigate("/gear")
             } else {
                 r.json()
                 .then(e => setError(e))
             }
         })
     }
+
+    console.log(user)
+    console.log(error.error)
 
   return (
     <ThemeProvider theme={theme}>
@@ -112,6 +116,7 @@ export default function Login() {
                 label="Username"
                 name="username"
                 onChange={handleChange}
+                value={formData.username}
                 autoComplete="username"
                 autoFocus
               />
@@ -124,6 +129,7 @@ export default function Login() {
                 type="password"
                 id="password"
                 onChange={handleChange}
+                value={formData.password}
                 autoComplete="current-password"
               />
               <FormControlLabel
@@ -145,7 +151,7 @@ export default function Login() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

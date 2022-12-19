@@ -1,6 +1,6 @@
-import { createAsyncThunk,createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// export const fetchUser = createAsyncThunk("user/login", () => {
+// export const fetchUser = createAsyncThunk("user/login", async () => {
 //     return fetch("/login")
 //     .then(r => r.json)
 //     .then(user => user)
@@ -13,10 +13,10 @@ const userSlice = createSlice({
     },
 
     reducers: {
-        login: (state, action) => {
+        login(state, action) {
             state.user = action.payload
         },
-        logout: (state, action) => {
+        logout(state, action) {
             state.user = null
         },
     }
