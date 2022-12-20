@@ -9,7 +9,7 @@ export const fetchGears = createAsyncThunk("gears/fetchGears", async () => {
 const gearsSlice = createSlice({
     name: "gears",
     initialState: {
-        entities: [],
+        gears: [],
     },
     reducers: {
         gearAdded(state, action) {
@@ -34,7 +34,7 @@ const gearsSlice = createSlice({
     }
 })
 
-export const allGears = (state) => state.gears
+export const allGears = (state) => state.gear.gears
 
 export const { gearAdded } = gearsSlice.actions
 

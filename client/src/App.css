@@ -102,3 +102,9 @@
 span {
   margin-left: 16px;
 }
+
+.comboBox {
+  justify-content: center;
+  margin: auto;
+  
+}

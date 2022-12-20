@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchActivities, allActivities } from './features/activitiesSlice'
-import { selectUser } from './features/sessionSlice'
-import Login from './components/Login'
+import { fetchActivities, selectAllActivities } from './features/activitiesSlice'
+import { selectUser, autoLogin } from './features/sessionSlice'
 import './App.css'
+import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Testgear from './components/Testgear'
 import NavBar from './components/NavBar'
@@ -12,10 +12,10 @@ import UserFeed from './components/UserFeed'
 import Groups from './components/Groups'
 import Messages from './components/Messages'
 import Testnav from './components/Testnav'
+import UserProfile from './components/UserProfile'
 
 function App() {
   const dispatch = useDispatch()
-  const activities = useSelector(state => state.activities)
   const user = useSelector(selectUser)
   
   
@@ -23,15 +23,11 @@ function App() {
     dispatch(fetchActivities())
   }, [])
 
-  console.log(activities)
-  console.log(allActivities)
+  useEffect(() => {
+    dispatch(autoLogin())
+  }, [])
 
-
-  // useEffect(() => {
-  //   fetch("/activities")
-  //   .then(r => r.json())
-  //   .then 
-  // }, [])
+  console.log(selectUser)
 
 
   return (
@@ -40,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
+        <Route path="/user/profile" element={<UserProfile />}/>
         <Route path="/user/feed" element={<UserFeed />}/>
         <Route path="/user/groups" element={<Groups />}/>
         <Route path="/user/gear" element={<Testgear />}/>

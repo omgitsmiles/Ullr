@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import TextField from '@mui/material/TextField';
-import Rating from '@mui/material/Rating';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import UserFeedActivity from './UserFeedActivity';
+import React, { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { selectAllActivities, fetchActivities } from "../features/activitiesSlice"
+import UserFeedActivity from "./UserFeedActivity"
 
 const UserFeed = () => {
-    const [activities, setActivities] = useState([])
+    const dispatch = useDispatch()
+    const allActivities = useSelector(selectAllActivities)
 
     useEffect(() => {
-        fetch("/activities")
-        .then(r => r.json())
-        .then(setActivities)
+      dispatch(fetchActivities())
     }, [])
 
-    const renderActivities = activities.map(activity => (
+    console.log(allActivities)
+
+    const renderActivities = allActivities.map(activity => (
         <UserFeedActivity key={activity.id} activity={activity}/>
     ))
 

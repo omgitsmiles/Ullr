@@ -1,10 +1,15 @@
 class GearsController < ApplicationController
     before_action :authorize
+
+    def index
+        gears = Gear.all
+        render json: gears, status: 200
+    end
     
-    def show
-         gear = Gear.find(params[:id])
-         render json: gear, status: 200
-     end
+    # def show
+    #      gear = Gear.find(params[:id])
+    #      render json: gear, status: 200
+    #  end
 
     def create
         gear = Gear.create(gears_params)
@@ -21,7 +26,7 @@ class GearsController < ApplicationController
     private
 
     def find_user
-        User.find(session[:id])
+        User.find_by(id: session[:id])
     end
 
     def gears_params

@@ -6,10 +6,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 //     .then(user => user)
 // })
 
+export const autoLogin = createAsyncThunk("user/autoLogin", () => {
+    return fetch ("/me")
+    .then(r => r.json())
+    .then(user => user)
+})
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        user: null
+        user: null,
+        isLoading: false
     },
 
     reducers: {
@@ -19,6 +26,18 @@ const userSlice = createSlice({
         logout(state, action) {
             state.user = null
         },
+
+    extraReducers: {
+        [autoLogin.pending]: (state) => {
+            state.isLoading = true
+        }, 
+        [autoLogin.fulfilled]: (state, action) => {
+            console.log(action)
+            state.isLoading = false
+            state.user = action.payload
+        }
+    },
+
     }
 })
 

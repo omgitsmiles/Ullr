@@ -18,6 +18,11 @@ function Navbar() {
     <div>
       {/* <IconContext.Provider value={{ color: "undefined" }}> */}
         <div className="navbar">
+        {/* <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+        </IconButton> */}
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
@@ -41,11 +46,6 @@ function Navbar() {
             })}
           </ul>
         </nav>
-        {/* <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-        </IconButton> */}
       {/* </IconContext.Provider> */}
     </div>
   );
