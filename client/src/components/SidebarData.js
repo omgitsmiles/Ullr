@@ -5,12 +5,19 @@ import SnowshoeingIcon from '@mui/icons-material/Snowshoeing';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
 
 export const SidebarData = [
   {
     title: "Home",
     path: "/user/feed",
     icon: <HomeIcon />,
+    cName: "nav-text",
+  },
+  {
+    title: "My Profile",
+    path: "/user/profile",
+    icon: <PersonIcon />,
     cName: "nav-text",
   },
   {

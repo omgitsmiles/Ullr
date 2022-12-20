@@ -11,6 +11,7 @@ import NavBar from './components/NavBar'
 import UserFeed from './components/UserFeed'
 import Groups from './components/Groups'
 import Messages from './components/Messages'
+import Testnav from './components/Testnav'
 
 function App() {
   const dispatch = useDispatch()
@@ -43,6 +44,7 @@ function App() {
         <Route path="/user/groups" element={<Groups />}/>
         <Route path="/user/gear" element={<Testgear />}/>
         <Route path="/user/messages" element={<Messages />}/>
+        <Route path="test" element={<Testnav />}/>
       </Routes>
     </div>
   );

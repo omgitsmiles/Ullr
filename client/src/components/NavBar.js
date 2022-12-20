@@ -3,6 +3,9 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
+import { IconButton } from "@mui/material";
+import Badge from '@mui/material/Badge';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import "../App.css";
 // import { IconContext } from "react-icons";
 
@@ -38,6 +41,11 @@ function Navbar() {
             })}
           </ul>
         </nav>
+        {/* <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+        </IconButton> */}
       {/* </IconContext.Provider> */}
     </div>
   );

@@ -62,7 +62,7 @@ export default function Login() {
             if (r.ok) {
                 r.json()
                 .then(user => dispatch(login(user)))
-                navigate("/gear")
+                navigate("/user/gear")
             } else {
                 r.json()
                 .then(e => setError(e))
