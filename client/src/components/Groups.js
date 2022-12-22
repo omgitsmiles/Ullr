@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -7,6 +8,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 const Groups = ({ group }) => {
+    const navigate = useNavigate()
+    const groupLink = (groupID) => {
+        navigate(`/groups/${groupID}`)
+    }
 
     console.log(group)
 
@@ -21,7 +26,7 @@ const Groups = ({ group }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" sx={{ flex: "auto" }}>Learn More</Button>
+            <Button size="small" sx={{ flex: "auto", color: "#FFA500" }} onClick={() => groupLink(group.id)}>comments</Button>
           </CardActions>
         </React.Fragment>
       );
