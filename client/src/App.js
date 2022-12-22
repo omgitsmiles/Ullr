@@ -8,8 +8,8 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Testgear from './components/Testgear'
 import NavBar from './components/NavBar'
-import UserFeed from './components/UserFeed'
-import Groups from './components/Groups'
+import UserFeed from './components/UserFeedContainer'
+import GroupsContainer from './components/GroupsContainer'
 import Messages from './components/Messages'
 import Testnav from './components/Testnav'
 import UserProfile from './components/UserProfile'
@@ -18,11 +18,6 @@ import UserActivity from './components/User'
 function App() {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
-  
-  
-  useEffect(() => {
-    dispatch(fetchActivities())
-  }, [])
 
   useEffect(() => {
     dispatch(autoLogin())
@@ -38,7 +33,7 @@ function App() {
         <Route path="/user/profile" element={<UserProfile />}/>
         <Route path="/activities/:id" element={<UserActivity />}/>
         <Route path="/user/feed" element={<UserFeed />}/>
-        <Route path="/user/groups" element={<Groups />}/>
+        <Route path="/user/groups" element={<GroupsContainer />}/>
         <Route path="/user/gear" element={<Testgear />}/>
         <Route path="/user/messages" element={<Messages />}/>
         <Route path="test" element={<Testnav />}/>
