@@ -28,7 +28,16 @@ const activitiesSlice = createSlice({
         },
         activityRemoved(state, action) {
             state.activities.filter(activity => activity.id !== action.payload)
-        }
+        },
+        activityUpvoted(state, action) {
+            state.activities.map(activity => {
+            if (activity.id === action.payload.id) {
+                activity.upvotes = action.payload.upvotes
+            } else {
+                return activity
+            }
+            })   
+        },
     },
 
     extraReducers: {
@@ -42,7 +51,7 @@ const activitiesSlice = createSlice({
     }   
 })
 
-export const {  activityUpdated, activityRemoved } = activitiesSlice.actions
+export const {  activityUpdated, activityRemoved, activityUpvoted } = activitiesSlice.actions
 
 export const selectAllActivities = (state) => state.activity.activities
 

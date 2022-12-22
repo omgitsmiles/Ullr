@@ -16,6 +16,23 @@ const Groups = () => {
     })
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    fetch("/groups", {
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(r => r.json())
+    .then(newGroup => console.log(newGroup))
+    setFormData({
+      name: "",
+      description: ""
+    })
+  }
+
   return (
     <div>
         <h2>My Groups</h2>
@@ -25,21 +42,25 @@ const Groups = () => {
         {toggle ? (
           <>
             <br></br>
-            <form onChange={handleChange}>
-              <TextField
-              hiddenLabel
+            <form onChange={handleChange} onSubmit={handleSubmit}>
+            <TextField
               id="name"
-              defaultValue="Name"
-              variant="filled"
-              size="small"
+              label="Name"
+              value={formData.name}
+              multiline
+            />
+              <br></br>
+              <br></br>
+              <TextField
+                id="description"
+                label="Description"
+                value={formData.description}
+                multiline
+                rows={4}
               />
               <br></br>
-            <TextField
-              hiddenLabel
-              id="description"
-              defaultValue="Description"
-              variant="filled"
-              />
+              <br></br>
+              <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>Submit</Button>
             </form>
           </>
         ) : null}

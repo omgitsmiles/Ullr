@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :activities
   resources :gears
 
+  patch '/upvotes/:id', to: 'activities#upvotes'
+
   post '/login', to: 'sessions#create'
   
   delete '/logout', to: 'sessions#destroy'

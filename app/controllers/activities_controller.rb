@@ -29,6 +29,12 @@ class ActivitiesController < ApplicationController
         head 204
     end
 
+    def upvotes
+        activity = Activity.find(params[:id])
+        activity.update!(upvote_params)
+        render json: activity, status: 202
+    end
+
     private
 
     def find_user
@@ -37,6 +43,10 @@ class ActivitiesController < ApplicationController
 
     def activities_params
         params.permit(:sport, :distance, :elapsed_time, :gear_id)
+    end
+
+    def upvote_params
+        params.permit(:upvotes)
     end
 
 end

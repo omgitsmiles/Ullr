@@ -12,26 +12,24 @@ import Avatar from '@mui/material/Avatar';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
-import { activityUpdated, activityRemoved } from '../features/activitiesSlice';
+import { activityUpdated, activityUpvoted } from '../features/activitiesSlice';
 import { selectUser } from '../features/sessionSlice'; 
 
 const UserFeedActivity = ({ activity }) => {
     const dispatch = useDispatch()
-
-    console.log(activity)
+    const { upvotes } = activity
     
     const handleLikes = () => {
-        fetch(`/activities/${activity.id}`, {
+        fetch(`/upvotes/${activity.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type" : "application/json"
             },
-            body: JSON.stringify(activity.upvotes + 1)
+            body: JSON.stringify({upvotes: upvotes + 1})
         })
         .then(r => r.json())
-        .then(updatedActivity => dispatch(activityUpdated(updatedActivity)))
+        .then(updatedActivity => dispatch(activityUpvoted(updatedActivity)))
     }
-
 
   return (
     <div>
@@ -61,7 +59,7 @@ const UserFeedActivity = ({ activity }) => {
               alt={activity?.name}
             />
                 <br></br>
-                {activity?.sport} | {activity?.distance} miles | {activity?.elapsed_time} mins
+                <strong>{activity?.sport}</strong> | {activity?.distance} miles | {activity?.elapsed_time} mins
                 <br></br> 
                 Gear: {activity.users_gear}
             </Typography>
@@ -69,7 +67,7 @@ const UserFeedActivity = ({ activity }) => {
                 <button onClick={handleLikes}><ThumbUpAltIcon /></button>
                 <br></br>
                 <br></br>
-                {activity?.upvotes === 0 ? "Be first to give kudos!" : activity?.upvotes}
+                {activity?.upvotes === 0 ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
             </CardContent>
             </Card>
             </Grid>
