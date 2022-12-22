@@ -11,10 +11,8 @@ const UserFeed = () => {
       dispatch(fetchActivities())
     }, [])
 
-    console.log(allActivities)
-
     const renderActivities = allActivities.map(activity => (
-        <UserFeedActivity key={activity.id} activity={activity}/>
+        <UserFeedActivity key={activity?.id} activity={activity}/>
     ))
 
 

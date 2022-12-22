@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { gearAdded, allGears, fetchGears } from '../features/gearsSlice'
+import { gearAdded, gearRemoved, allGears, fetchGears } from '../features/gearsSlice'
 import { selectUser } from '../features/sessionSlice'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -22,6 +22,7 @@ const Testgear = () => {
 
     console.log(gears)
 
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -29,20 +30,23 @@ const Testgear = () => {
         })
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch("/gears", {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(r => r.json())
-        .then(newGear => dispatch(gearAdded(newGear)))
+        // fetch("/gears", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type" : "application/json"
+        //     },
+        //     body: JSON.stringify(formData)
+        // })
+        // .then(r => r.json())
+        // .then(newGear => dispatch(gearAdded(newGear)))
         dispatch(gearAdded(formData))
     }
+
+    const renderGears = gears.map(gear => (
+        <button key={gear.id} onClick={() => dispatch(gearRemoved(gear.id))}>{gear.shoes}</button>
+    ))
 
 
   return (
@@ -53,13 +57,22 @@ const Testgear = () => {
             <Autocomplete
                 className="comboBox"
                 disablePortal
-                id="shoe"
+                id="options"
                 options={shoeOrBike.map(string => string)}
                 sx={{ width: 300 }}
                 // onSelect={e => setSelect(e.target.value)}
                 renderInput={(params) => <TextField {...params} label="Gear" />}
             />
             <div>
+                <br></br>
+                <TextField
+                    sx={{ width: "20%" }}
+                    label="Shoe Name"
+                    id="shoes"
+                    defaultValue="shoe name"
+                    variant="standard"
+                />
+                <br></br>
                 <br></br>
                 <TextField
                     sx={{ width: "20%" }}
@@ -70,8 +83,13 @@ const Testgear = () => {
                 />
             </div>
             <br></br>
-            <Button variant="outlined"  sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>Submit</Button>
+            <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>Submit</Button>
         </form>
+        <div>
+            <ul>
+                {renderGears}
+            </ul>
+        </div>
     </div>
   )
 }

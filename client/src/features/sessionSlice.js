@@ -35,7 +35,7 @@ const userSlice = createSlice({
             console.log(action)
             state.isLoading = false
             state.user = action.payload
-        }
+        },
     },
 
     }

@@ -13,6 +13,7 @@ import Groups from './components/Groups'
 import Messages from './components/Messages'
 import Testnav from './components/Testnav'
 import UserProfile from './components/UserProfile'
+import UserActivity from './components/User'
 
 function App() {
   const dispatch = useDispatch()
@@ -27,8 +28,6 @@ function App() {
     dispatch(autoLogin())
   }, [])
 
-  console.log(selectUser)
-
 
   return (
     <div className="App">
@@ -37,6 +36,7 @@ function App() {
         <Route path="/" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/user/profile" element={<UserProfile />}/>
+        <Route path="/activities/:id" element={<UserActivity />}/>
         <Route path="/user/feed" element={<UserFeed />}/>
         <Route path="/user/groups" element={<Groups />}/>
         <Route path="/user/gear" element={<Testgear />}/>

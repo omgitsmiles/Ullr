@@ -13,12 +13,13 @@ class ActivitiesController < ApplicationController
     end
 
     def create
-        activity = find_user.create!(activities_params)
+        activity = find_user.activities.create!(activities_params)
         render json: activity, status: 201
     end
 
     def update
-        activity = find_user.update!(activities_params)
+        activity = find_user.activities.find(params[:id])
+        activity.update!(activities_params)
         render json: activity, status: 202
     end
 
@@ -31,7 +32,7 @@ class ActivitiesController < ApplicationController
     private
 
     def find_user
-        User.find(session[:id])
+        User.find_by(id: session[:user_id])
     end
 
     def activities_params

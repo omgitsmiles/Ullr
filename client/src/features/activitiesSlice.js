@@ -6,7 +6,6 @@ export const fetchActivities = createAsyncThunk("activities/fetchActivities", ()
     .then(activitiesArray => activitiesArray)
 })
 
-
 const activitiesSlice = createSlice({
     name: "activities",
     initialState: {
@@ -19,12 +18,16 @@ const activitiesSlice = createSlice({
             state.activities.push(action.payload)
         },
         activityUpdated(state, action) {
-            // use filter bc find might returned undefined if using find.
-            const activity = state.activities.find(activity => activity.id === action.payload.id)
-            state.activities[activity] = action.payload
+                state.activities.map(activity => {
+                if (activity.id === action.payload.id) {
+                    activity = action.payload
+                } else {
+                    return activity
+                }
+            })   
         },
         activityRemoved(state, action) {
-            state.activities.filter(activity => activity.id !== action.payload.id)
+            state.activities.filter(activity => activity.id !== action.payload)
         }
     },
 
@@ -38,6 +41,8 @@ const activitiesSlice = createSlice({
             },
     }   
 })
+
+export const {  activityUpdated, activityRemoved } = activitiesSlice.actions
 
 export const selectAllActivities = (state) => state.activity.activities
 

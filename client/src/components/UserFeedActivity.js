@@ -1,17 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
-import Rating from '@mui/material/Rating';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useDispatch, useSelector } from 'react-redux';
+import { activityUpdated, activityRemoved } from '../features/activitiesSlice';
+import { selectUser } from '../features/sessionSlice'; 
 
 const UserFeedActivity = ({ activity }) => {
+    const dispatch = useDispatch()
 
     console.log(activity)
+    
+    const handleLikes = () => {
+        fetch(`/activities/${activity.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(activity.upvotes + 1)
+        })
+        .then(r => r.json())
+        .then(updatedActivity => dispatch(activityUpdated(updatedActivity)))
+    }
+
 
   return (
     <div>
@@ -26,19 +46,30 @@ const UserFeedActivity = ({ activity }) => {
             alt=""
             />
             <CardContent sx={{ flexGrow: 1 }}>
-            <Typography gutterBottom variant="h5">
-                {activity.user.username}
+            <Typography gutterBottom variant="h5" className="activityUser">
+               {activity?.user.username}
             </Typography>
+            <Typography className="activityUser">
+                {activity?.created_at.slice(0, 10)}
+            </Typography>
+            <Avatar src={activity?.user.picture} />
             <Typography>
-                {activity.created_at.slice(0, 10)}
+                <br></br>
+            <CardMedia
+              component="img"
+              image={activity?.picture}
+              alt={activity?.name}
+            />
+                <br></br>
+                {activity?.sport} | {activity?.distance} miles | {activity?.elapsed_time} mins
+                <br></br> 
+                Gear: {activity.users_gear}
             </Typography>
-            <Typography>
+                <br></br>
+                <button onClick={handleLikes}><ThumbUpAltIcon /></button>
                 <br></br>
                 <br></br>
-                {activity.sport}
-                <br></br>
-                {activity.distance} miles
-            </Typography>
+                {activity?.upvotes === 0 ? "Be first to give kudos!" : activity?.upvotes}
             </CardContent>
             </Card>
             </Grid>

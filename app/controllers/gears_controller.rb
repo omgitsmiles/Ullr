@@ -2,7 +2,7 @@ class GearsController < ApplicationController
     before_action :authorize
 
     def index
-        gears = Gear.all
+        gears = find_user.gears.all
         render json: gears, status: 200
     end
     
@@ -26,7 +26,7 @@ class GearsController < ApplicationController
     private
 
     def find_user
-        User.find_by(id: session[:id])
+        User.find_by(id: session[:user_id])
     end
 
     def gears_params

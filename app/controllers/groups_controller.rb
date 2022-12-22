@@ -2,12 +2,13 @@ class GroupsController < ApplicationController
     before_action :authorize
 
     def create
-        group = find_user.create!(group_params)
+        group = find_user.groups.create!(group_params)
         render json: group, status: 201
     end
     
     def update
-        group = find_user.update!(group_params)
+        group = find_user.groups.find(params[:id])
+        group.update!(group_params)
         render json: group, status: 202
     end
 
@@ -19,7 +20,7 @@ class GroupsController < ApplicationController
     private
 
     def find_user
-        user = User.find(session[:id])
+        user = User.find_by(id: session[:user_id])
     end
 
     def group_params
