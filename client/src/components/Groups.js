@@ -1,13 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { fetchGroups, selectAllGroups, groupAdded } from '../features/groupsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { render } from 'react-dom';
 
 const Groups = () => {
+  const allGroups = useSelector(selectAllGroups)
+  const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     description: ""
   })
+
+  useEffect(() => {
+    dispatch(fetchGroups())
+  }, [])
+
+  console.log(allGroups)
 
   const handleChange = (e) => {
     setFormData({
@@ -26,7 +37,7 @@ const Groups = () => {
       body: JSON.stringify(formData)
     })
     .then(r => r.json())
-    .then(newGroup => console.log(newGroup))
+    .then(newGroup => dispatch(groupAdded(newGroup)))
     setFormData({
       name: "",
       description: ""
