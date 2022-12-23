@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 
 const UserProfileActivity = ({ activity, user }) => {
+
+
   return (
     <div>
         <h2>My Activities</h2>
@@ -21,7 +23,7 @@ const UserProfileActivity = ({ activity, user }) => {
             <Typography gutterBottom variant="h5" className="activityUser">
                {user.username}
             </Typography>
-            <Avatar src={activity?.picture} />
+            <Avatar src={user?.picture} />
             <Typography className="activityUser">
                 {activity?.created_at.slice(0, 10)}
             </Typography>
@@ -35,7 +37,7 @@ const UserProfileActivity = ({ activity, user }) => {
                 <br></br>
                 <strong>{activity?.sport}</strong> | {activity?.distance} miles | {activity?.elapsed_time} mins
                 <br></br> 
-                Gear: {activity.users_gear}
+                <strong>Gear</strong>: {activity.users_gear}
             </Typography>
                 <br></br>
                 <br></br>

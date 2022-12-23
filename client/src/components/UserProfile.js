@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllActivities, fetchMyActivities } from "../features/activitiesSlice"
+import { selectAllGears, fetchGears } from "../features/gearsSlice";
+import Autocomplete from '@mui/material/Autocomplete';
 import { selectUser } from "../features/sessionSlice"
 import {
   makeStyles,
@@ -11,7 +12,7 @@ import {
   Typography,
   Button
 } from "@material-ui/core"
-import PhoneIcon from "@material-ui/icons/Phone"
+import TextField from '@mui/material/TextField';
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail"
 import LocationOnIcon from "@material-ui/icons/LocationOn"
 import UserProfileActivity from "./UserProfileActivity"
@@ -43,9 +44,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserCard(props) {
   const classes = useStyles()
+  const dispatch = useDispatch()
   const user = useSelector(selectUser)
+  const gears = useSelector(selectAllGears)
   const [myActivities, setMyActivities] = useState(user.activities)
-  console.log(myActivities)
+  const [activityToggle, setActivityToggle] = useState(false)
+  console.log(gears)
+
+  useEffect(() => {
+    dispatch(fetchGears())
+}, [])
 
   const renderMyActivities = myActivities.map(activity => (
     <UserProfileActivity key={activity.id} activity={activity} user={user}/>
@@ -93,8 +101,46 @@ export default function UserCard(props) {
           {user.location}
         </Typography>{" "}
       </CardContent>
-        <Button sx={{ flex: "auto", color: "#FFA500" }}>Update</Button>
+        <Button>update</Button>
+        <Button onClick={() => setActivityToggle(activityToggle => !activityToggle)}>add new activity</Button>
     </Card>
+    <br></br>
+    <br></br>
+    {activityToggle ? 
+        <>
+          <TextField
+            label="Size"
+            id="standard-size-normal"
+            defaultValue="Normal"
+            variant="standard"
+          />
+          <TextField
+            label="Size"
+            id="standard-size-normal"
+            defaultValue="Normal"
+            variant="standard"
+          />
+          <TextField
+            label="Size"
+            id="standard-size-normal"
+            defaultValue="Normal"
+            variant="standard"
+          />
+          <br></br>
+          <br></br>
+          <Autocomplete
+                className="comboBox"
+                disablePortal
+                id="options"
+                options={gears.map(gear => (
+                  gear.shoes || gear.bike 
+                ))}
+                sx={{ width: 300 }}
+                // onSelect={e => setSelect(e.target.value)}
+                renderInput={(params) => <TextField {...params} label="Gear" />}
+            /> 
+        </>: null}
+        <br></br>
     {renderMyActivities}
     </div>
   );

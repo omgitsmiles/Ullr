@@ -52,7 +52,7 @@ const GroupsContainer = () => {
     <div>
         <h2>Groups</h2>
         <br></br>
-        <Button sx={{ color: "#FFA500" }} onClick={() => setToggle(!toggle)}>Create Group</Button>
+        <Button sx={{ color: "#FFA500" }} onClick={() => setToggle(toggle => !toggle)}>Create Group</Button>
         <br></br>
         {toggle ? (
           <>

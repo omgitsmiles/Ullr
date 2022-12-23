@@ -37,7 +37,7 @@ const gearsSlice = createSlice({
         }
 })
 
-export const allGears = (state) => state.gear.gears
+export const selectAllGears = (state) => state.gear.gears
 
 export const { gearAdded, gearRemoved } = gearsSlice.actions
 
