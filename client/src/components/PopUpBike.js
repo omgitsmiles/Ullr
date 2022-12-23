@@ -4,10 +4,9 @@ import { gearAdded } from '../features/gearsSlice';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 
-const PopUp = ({ toggle }) => {
+const PopUpBike = ({ toggle }) => {
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
-        shoes: "",
         bike: "",
         picture: ""
     })
@@ -37,25 +36,24 @@ const PopUp = ({ toggle }) => {
           <span className="close" onClick={toggle}>
             &times;
           </span>
-          <h3>Add Running Shoes</h3>
+          <h3>Add a Bike</h3>
           <form onSubmit={handleSubmit} onChange={handleChange}>
             <div>
                 <br></br>
                 <TextField
                     sx={{ width: "20%" }}
                     label="Gear"
-                    id="shoes"
+                    id="bike"
                     defaultValue="name"
                     variant="standard"
-                    value={formData.shoes}
+                    value={formData.bike}
                 />
                 <br></br>
                 <br></br>
                 <TextField
                     sx={{ width: "20%" }}
-                    label="Picture URL"
+                    label="Picture"
                     id="picture"
-                    defaultValue="picture"
                     variant="standard"
                 />
             </div>
@@ -67,4 +65,4 @@ const PopUp = ({ toggle }) => {
   )
 }
 
-export default PopUp
+export default PopUpBike

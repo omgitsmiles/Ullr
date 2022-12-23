@@ -30,7 +30,7 @@ class GearsController < ApplicationController
     end
 
     def gears_params
-        params.permit(:shoes, :bikes, :picture)
+        params.permit(:shoes, :bike, :picture)
     end
 
 end

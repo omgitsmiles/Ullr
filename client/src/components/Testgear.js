@@ -5,13 +5,15 @@ import { selectUser } from '../features/sessionSlice'
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import PopUp from './PopUp';
+import PopUpShoes from './PopUpShoes';
+import PopUpBike from './PopUpBike';
 
 const Testgear = () => {
     const dispatch = useDispatch()
     const user = useSelector(selectUser)
     const gears = useSelector(selectAllGears)
-    const [togglePopUp, setTogglePopUp] = useState(false)
+    const [toggleShoe, setToggleShoe] = useState(false)
+    const [toggleBike, setToggleBike] = useState(false)
     const [select, setSelect] = useState("")
     const [formData, setFormData] = useState({
         shoes: "",
@@ -49,44 +51,24 @@ const Testgear = () => {
         </>
     ))
 
-    const handleToggle = () => {
-        setTogglePopUp(togglePopUp => !togglePopUp)
+    const handleToggleShoe = () => {
+        setToggleShoe(toggleShoe => !toggleShoe)
+    }
+    const handleToggleBike = () => {
+        setToggleBike(toggleBike => !toggleBike)
     }
 
   return (
     <div>
         <h2>hi {user?.username}</h2>
         <h3>Add your gear here</h3>
-        <Button onClick={handleToggle}>add shoes</Button>
+        <Button onClick={handleToggleShoe}>add shoes</Button>
         <span>
-        <Button onClick={handleToggle}>add a bike</Button>
+        <Button onClick={handleToggleBike}>add a bike</Button>
         </span>
-        {togglePopUp ? <PopUp toggle={handleToggle}/> : null}
+        {toggleShoe ? <PopUpShoes toggle={handleToggleShoe}/> : null}
+        {toggleBike ? <PopUpBike toggle={handleToggleBike}/> : null}
         <div>
-        <form onSubmit={handleSubmit} onChange={handleChange}>
-            <div>
-                <br></br>
-                <TextField
-                    sx={{ width: "20%" }}
-                    label="Gear"
-                    id="bike"
-                    defaultValue="name"
-                    variant="standard"
-                    value={formData.bike}
-                />
-                <br></br>
-                <br></br>
-                <TextField
-                    sx={{ width: "20%" }}
-                    label="Picture URL"
-                    id="picture"
-                    defaultValue="picture"
-                    variant="standard"
-                />
-            </div>
-            <br></br>
-            <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>submit</Button>
-        </form>
             <ul>
                 {renderGears}
             </ul>
