@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   patch '/upvotes/:id', to: 'activities#upvotes'
 
+  patch 'upvotes/:id', to: 'posts#upvotes'
+
+  get '/user/activities', to: 'activities#myactivities'
+
   post '/login', to: 'sessions#create'
   
   delete '/logout', to: 'sessions#destroy'

@@ -27,10 +27,11 @@ function App() {
     dispatch(fetchGroups())
   }, [])
 
+  if (!user) return <Login />
 
   return (
     <div className="App">
-        {!user ? null : <NavBar />}
+        <NavBar />
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>

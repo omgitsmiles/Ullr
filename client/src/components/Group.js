@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Button } from '@mui/material'
-import { Avatar } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { postAdded } from '../features/groupsSlice'
+import { Button } from '@mui/material'
+import { Avatar } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
@@ -22,8 +22,6 @@ const Group = ({ groups }) => {
         setGroup(singleGroup)
     }, [groups])
 
-    console.log(group)
-
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch("/posts", {
@@ -35,7 +33,10 @@ const Group = ({ groups }) => {
         })
         .then(r => r.json())
         .then(post => dispatch(postAdded(post)))
-        // dispatch(postAdded({post: newPost, group_id: id}))
+    }
+
+    const handleLikes = () => {
+        // have to grab
     }
 
   return (
@@ -65,7 +66,7 @@ const Group = ({ groups }) => {
             >
             <CardContent sx={{ flexGrow: 1 }}>
            {group?.posts.map(post => (
-            <>
+            <div key={post.id}>
                 <Typography gutterBottom variant="h5" className="activityUser">
                         {post.user}
                     </Typography>
@@ -76,8 +77,7 @@ const Group = ({ groups }) => {
                     <Typography>
                         {post.post}
                     </Typography>
-                   <button key={post.id}><ThumbUpAltIcon/></button> 
-            </>
+            </div>
                ))}
             </CardContent>
             </Card>

@@ -16,6 +16,12 @@ class PostsController < ApplicationController
         render json: post, status: 202
     end
 
+    def upvotes
+        post = Post.find(params[:id])
+        post.update!(upvote_params)
+        render json: post, status: 202
+    end
+
     def destroy
         post = find_user.posts.find(params[:id])
         post.destroy
@@ -30,6 +36,10 @@ class PostsController < ApplicationController
 
     def post_params
         params.permit(:post, :upvotes, :group_id)
+    end
+
+    def upvote_params
+        params.permit(:upvotes)
     end
 
 end

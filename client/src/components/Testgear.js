@@ -45,9 +45,10 @@ const Testgear = () => {
     }
 
     const renderGears = gears.map(gear => (
-        <button key={gear.id} onClick={() => dispatch(gearRemoved(gear.id))}>{gear.shoes}</button>
+        <>
+        <p key={gear.id} onClick={() => dispatch(gearRemoved(gear.id))}>{gear.shoes}</p>
+        </>
     ))
-
 
   return (
     <div>

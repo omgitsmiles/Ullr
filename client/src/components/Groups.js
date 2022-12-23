@@ -13,8 +13,6 @@ const Groups = ({ group }) => {
         navigate(`/groups/${groupID}`)
     }
 
-    console.log(group)
-
     const card = (
         <React.Fragment>
           <CardContent>
