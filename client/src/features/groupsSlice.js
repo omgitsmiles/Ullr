@@ -17,6 +17,10 @@ const groupsSlice = createSlice({
         groupAdded(state, action) {
             state.groups.push(action.payload)
         },
+        postAdded(state, action) {
+           const index = state.groups.findIndex(group => group.id === action.payload.group_id)
+           state.groups[index].posts.push(action.payload)
+        },
     },
 
     extraReducers: {
@@ -30,7 +34,7 @@ const groupsSlice = createSlice({
     }
 })
 
-export const { groupAdded } = groupsSlice.actions
+export const { groupAdded, postAdded } = groupsSlice.actions
 
 export const selectAllGroups = (state) => state.group.groups
 

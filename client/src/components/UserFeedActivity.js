@@ -38,19 +38,14 @@ const UserFeedActivity = ({ activity }) => {
             <Card className="card"
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
-            <CardMedia
-            component="img"
-            image=""
-            alt=""
-            />
             <CardContent sx={{ flexGrow: 1 }}>
             <Typography gutterBottom variant="h5" className="activityUser">
                {activity?.user.username}
             </Typography>
+            <Avatar src={activity?.user.picture} />
             <Typography className="activityUser">
                 {activity?.created_at.slice(0, 10)}
             </Typography>
-            <Avatar src={activity?.user.picture} />
             <Typography>
                 <br></br>
             <CardMedia

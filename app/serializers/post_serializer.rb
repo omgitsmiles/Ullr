@@ -1,5 +1,3 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :post, :upvote
-  has_one :user
-  has_one :group
+  attributes :id, :post, :upvote, :group_id, :username, :user_pic
 end

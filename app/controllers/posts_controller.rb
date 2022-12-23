@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     private
 
     def find_user
-        User.find(session[:id])
+        User.find_by(id: session[:user_id])
     end
 
     def post_params
