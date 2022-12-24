@@ -15,7 +15,7 @@ const activitiesSlice = createSlice({
 
     reducers: {
         activityAdded(state, action) {
-            state.activities.push(action.payload)
+            state.activities.unshift(action.payload)
         },
         activityUpdated(state, action) {
             const index = state.activities.findIndex(activity => activity.id === action.payload.id)

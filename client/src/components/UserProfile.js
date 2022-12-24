@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllGears, fetchGears } from "../features/gearsSlice"
-import { selectUser, userActivityAdded } from "../features/sessionSlice"
+import { selectUser } from "../features/sessionSlice"
 import { activityAdded, selectAllActivities } from "../features/activitiesSlice"
 import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
 import Autocomplete from '@mui/material/Autocomplete';
@@ -50,7 +50,7 @@ export default function UserCard(props) {
 
   useEffect(() => {
     dispatch(fetchGears())
-}, [])
+  }, [])
 
   const myActivities = activities.filter(activity => activity.user.id === user.id)
 
@@ -67,7 +67,7 @@ export default function UserCard(props) {
         return gear.shoes === select
       }
     })
-    const newActivity = { sport, distance, elapsed_time: elapsed, gear_id: selectedGear.id}
+    const newActivity = { sport, distance, elapsed_time: elapsed, picture, gear_id: selectedGear.id}
     fetch("/activities", {
       method: "POST",
       headers: {
@@ -77,6 +77,10 @@ export default function UserCard(props) {
     })
     .then(r => r.json())
     .then(activity => dispatch(activityAdded(activity)))
+    setSport("")
+    setDistance("")
+    setElapsed("")
+    setPicture("")
   }
 
   return (

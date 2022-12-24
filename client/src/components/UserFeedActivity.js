@@ -61,7 +61,7 @@ const UserFeedActivity = ({ activity }) => {
                 <button onClick={handleLikes}><ThumbUpAltIcon /></button>
                 <br></br>
                 <br></br>
-                {activity?.upvotes === 0 ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
+                {activity?.upvotes === null ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
             </CardContent>
             </Card>
             </Grid>

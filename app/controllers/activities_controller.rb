@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
     before_action :authorize
 
     def index
-        activities = Activity.all
+        activities = Activity.all.order(created_at: :desc)
         render json: activities, status: 200
     end
 
@@ -36,7 +36,7 @@ class ActivitiesController < ApplicationController
     end
 
     def activities_params
-        params.permit(:sport, :distance, :elapsed_time, :gear_id)
+        params.permit(:sport, :distance, :elapsed_time, :gear_id, :picture)
     end
 
     def upvote_params

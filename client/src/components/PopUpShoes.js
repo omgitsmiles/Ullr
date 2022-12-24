@@ -44,7 +44,6 @@ const PopUpShoes = ({ toggle }) => {
                     sx={{ width: "20%" }}
                     label="Gear"
                     id="shoes"
-                    defaultValue="name"
                     variant="standard"
                     value={formData.shoes}
                 />
@@ -54,7 +53,6 @@ const PopUpShoes = ({ toggle }) => {
                     sx={{ width: "20%" }}
                     label="Picture"
                     id="picture"
-                    defaultValue="picture"
                     variant="standard"
                 />
             </div>

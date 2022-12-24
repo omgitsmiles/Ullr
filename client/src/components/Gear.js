@@ -19,35 +19,20 @@ const Testgear = () => {
         picture: ""
     })
 
-    console.log(user)
-
     useEffect(() => {
         dispatch(fetchGears())
     }, [])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        fetch("/gears", {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(r => r.json())
-        .then(newGear => dispatch(gearAdded(newGear)))
-    }
-
     const renderShoes = gears.map(gear => (
-        <>
-        <p key={gear.id}>{gear.shoes}</p>
-        </>
+        <div key={gear.id}>
+        <p>{gear.shoes}</p>
+        </div>
     ))
 
     const renderBikes = gears.map(gear => (
-        <>
-        <p key={gear.id}>{gear.bike}</p>
-        </>
+        <div key={gear.id}>
+        <p>{gear.bike}</p>
+        </div>
     ))
 
     const handleToggleShoe = () => {
