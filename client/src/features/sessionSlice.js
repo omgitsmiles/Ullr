@@ -24,8 +24,11 @@ const userSlice = createSlice({
         login(state, action) {
             state.user = action.payload
         },
-        logout(state, action) {
+        logout(state) {
             state.user = null
+        },
+        userActivityAdded(state, action) {
+            state.user.activities.push(action.payload)
         },
 
     extraReducers: {
@@ -42,7 +45,7 @@ const userSlice = createSlice({
     }
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, userActivityAdded } = userSlice.actions
 
 export const selectUser = (state) => state.user.user
 

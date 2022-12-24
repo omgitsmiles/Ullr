@@ -7,6 +7,8 @@ const UserFeed = () => {
     const dispatch = useDispatch()
     const allActivities = useSelector(selectAllActivities)
 
+    console.log(allActivities)
+
     useEffect(() => {
       dispatch(fetchActivities())
     }, [])

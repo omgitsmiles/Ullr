@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllGears, fetchGears } from "../features/gearsSlice"
-import { selectUser } from "../features/sessionSlice"
+import { selectUser, userActivityAdded } from "../features/sessionSlice"
 import { activityAdded } from "../features/activitiesSlice"
 import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
 import Autocomplete from '@mui/material/Autocomplete';
@@ -51,6 +51,8 @@ export default function UserCard(props) {
   useEffect(() => {
     dispatch(fetchGears())
 }, [])
+
+console.log(user)
 
   const renderMyActivities = myActivities.map(activity => (
     <UserProfileActivity key={activity.id} activity={activity} user={user}/>
@@ -172,6 +174,7 @@ export default function UserCard(props) {
           </form>
         </>: null}
         <br></br>
+        <h2>My Activities</h2>
     {renderMyActivities}
     </div>
   );

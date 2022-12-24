@@ -7,13 +7,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const UserProfileActivity = ({ activity, user }) => {
 
 
   return (
     <div>
-        <h2>My Activities</h2>
         <Grid container sx={{ justifyContent: 'center', marginTop: '3%' }}>
         <Grid item key="" xs={12} sm={6} md={4}>
             <Card className="card"
@@ -42,7 +43,8 @@ const UserProfileActivity = ({ activity, user }) => {
                 <br></br>
                 <br></br>
                 <br></br>
-                {activity?.upvotes === 0 ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
+                {activity?.upvotes === null ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
+            <span className="userEdit"><EditIcon fontSize="small"/></span><span><DeleteIcon fontSize="small"/></span>
             </CardContent>
             </Card>
             </Grid>
