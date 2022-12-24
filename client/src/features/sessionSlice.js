@@ -16,6 +16,7 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
+        activities: [],
         isLoading: false
     },
 

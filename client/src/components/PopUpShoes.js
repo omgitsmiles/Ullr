@@ -52,7 +52,7 @@ const PopUpShoes = ({ toggle }) => {
                 <br></br>
                 <TextField
                     sx={{ width: "20%" }}
-                    label="Picture URL"
+                    label="Picture"
                     id="picture"
                     defaultValue="picture"
                     variant="standard"

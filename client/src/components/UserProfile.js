@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllGears, fetchGears } from "../features/gearsSlice";
-import Autocomplete from '@mui/material/Autocomplete';
+import { selectAllGears, fetchGears } from "../features/gearsSlice"
 import { selectUser } from "../features/sessionSlice"
-import {
-  makeStyles,
-  Card,
-  CardContent,
-  CardMedia,
-  Avatar,
-  Typography,
-  Button
-} from "@material-ui/core"
+import { activityAdded } from "../features/activitiesSlice"
+import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
+import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail"
 import LocationOnIcon from "@material-ui/icons/LocationOn"
@@ -49,7 +42,11 @@ export default function UserCard(props) {
   const gears = useSelector(selectAllGears)
   const [myActivities, setMyActivities] = useState(user.activities)
   const [activityToggle, setActivityToggle] = useState(false)
-  console.log(gears)
+  const [select, setSelect] = useState("")
+  const [sport, setSport] = useState("")
+  const [distance, setDistance] = useState("")
+  const [elapsed, setElapsed] = useState("")
+  const [picture, setPicture] = useState("")
 
   useEffect(() => {
     dispatch(fetchGears())
@@ -58,6 +55,27 @@ export default function UserCard(props) {
   const renderMyActivities = myActivities.map(activity => (
     <UserProfileActivity key={activity.id} activity={activity} user={user}/>
   ))
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const selectedGear = gears.find(gear => {
+      if (gear.bike !== null) {
+        return gear.bike === select
+      } else {
+        return gear.shoes === select
+      }
+    })
+    const newActivity = { sport, distance, elapsed_time: elapsed, gear_id: selectedGear.id}
+    fetch("/activities", {
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(newActivity)
+    })
+    .then(r => r.json())
+    .then(activity => dispatch(activityAdded(activity)))
+  }
 
   return (
     <div>
@@ -108,24 +126,35 @@ export default function UserCard(props) {
     <br></br>
     {activityToggle ? 
         <>
+        <form onSubmit={handleSubmit}>
           <TextField
-            label="Size"
-            id="standard-size-normal"
-            defaultValue="Normal"
+            label="What Activity?"
+            id="sport"
             variant="standard"
-          />
+            onChange={e => setSport(e.target.value)}
+            value={sport}
+            />
           <TextField
-            label="Size"
-            id="standard-size-normal"
-            defaultValue="Normal"
+            label="How much time?"
+            id="elapsed_time"
             variant="standard"
-          />
+            onChange={e => setElapsed(e.target.value)}
+            value={elapsed}
+            />
           <TextField
-            label="Size"
-            id="standard-size-normal"
-            defaultValue="Normal"
+            label="How many miles?"
+            id="distance"
             variant="standard"
-          />
+            onChange={e => setDistance(e.target.value)}
+            value={distance}
+            />
+          <TextField
+            label="Picture?"
+            id="picture"
+            variant="standard"
+            onChange={e => setPicture(e.target.value)}
+            value={picture}
+            />
           <br></br>
           <br></br>
           <Autocomplete
@@ -134,11 +163,13 @@ export default function UserCard(props) {
                 id="options"
                 options={gears.map(gear => (
                   gear.shoes || gear.bike 
-                ))}
-                sx={{ width: 300 }}
-                // onSelect={e => setSelect(e.target.value)}
-                renderInput={(params) => <TextField {...params} label="Gear" />}
-            /> 
+                  ))}
+                  sx={{ width: 300 }}
+                  onSelect={e => setSelect(e.target.value)}
+                  renderInput={(params) => <TextField {...params} label="Gear" />}
+                  /> 
+          <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>submit</Button>
+          </form>
         </>: null}
         <br></br>
     {renderMyActivities}

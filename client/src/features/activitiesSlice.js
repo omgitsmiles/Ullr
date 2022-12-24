@@ -51,7 +51,7 @@ const activitiesSlice = createSlice({
     }   
 })
 
-export const {  activityUpdated, activityRemoved, activityUpvoted } = activitiesSlice.actions
+export const { activityAdded, activityUpdated, activityRemoved, activityUpvoted } = activitiesSlice.actions
 
 export const selectAllActivities = (state) => state.activity.activities
 

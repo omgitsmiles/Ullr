@@ -6,7 +6,7 @@ import { fetchGroups, selectAllGroups } from './features/groupsSlice'
 import './App.css'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
-import Testgear from './components/Testgear'
+import Gear from './components/Gear'
 import NavBar from './components/NavBar'
 import UserFeed from './components/UserFeedContainer'
 import GroupsContainer from './components/GroupsContainer'
@@ -39,7 +39,7 @@ function App() {
         <Route path="/groups/:id" element={<Group groups={groups}/>}/>
         <Route path="/user/feed" element={<UserFeed />}/>
         <Route path="/user/groups" element={<GroupsContainer />}/>
-        <Route path="/user/gear" element={<Testgear />}/>
+        <Route path="/user/gear" element={<Gear />}/>
         <Route path="/user/messages" element={<Messages />}/>
       </Routes>
     </div>

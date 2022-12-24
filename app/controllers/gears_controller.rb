@@ -2,7 +2,7 @@ class GearsController < ApplicationController
     before_action :authorize
 
     def index
-        gears = find_user.gears.all
+        gears = Gear.all
         render json: gears, status: 200
     end
     

@@ -3,6 +3,6 @@ class Gear < ApplicationRecord
     has_many :users, through: :activities
 
     def mileage
-        self.activities
+        self.activities.sum(:distance)
     end
 end
