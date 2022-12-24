@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
+  
   resources :matches
   resources :messages
   resources :posts
   resources :groups
-  resources :activities
+  resources :activities, except: [:show, :update, :destroy]
   resources :gears
+
+  patch '/user/activities/:id', to: 'activities#update'
+  
+  delete '/user/activities/:id', to: 'activities#destroy'
 
   patch '/upvotes/:id', to: 'activities#upvotes'
 
   patch 'upvotes/:id', to: 'posts#upvotes'
-
-  get '/user/activities', to: 'activities#myactivities'
 
   post '/login', to: 'sessions#create'
   

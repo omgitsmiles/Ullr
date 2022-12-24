@@ -10,7 +10,7 @@ import AlternateEmailIcon from "@material-ui/icons/AlternateEmail"
 import LocationOnIcon from "@material-ui/icons/LocationOn"
 import UserProfileActivity from "./UserProfileActivity"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   text: {
     margin: theme.spacing(0, 0, 0.5),
   },

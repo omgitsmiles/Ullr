@@ -1,15 +1,56 @@
 import React, { useState } from 'react'
+import { makeStyles } from "@material-ui/core"
+import { activityUpdated, activityRemoved } from '../features/activitiesSlice';
+import { useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
 
-const UserProfileActivity = ({ activity, user }) => {
+const UserProfileActivity = ({ activity }) => {
+    const [toggle, setToggle] = useState(false)
+    const [sport, setSport] = useState("")
+    const dispatch = useDispatch()
 
+    const useStyles = makeStyles(theme => ({
+        clikcableIcon: {
+            color: "black",
+           "&:hover": {
+            color: "#FFA500"
+           },
+          },
+    }))
+    const classes = useStyles()
+
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        fetch(`activities/${activity.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({ sport })
+        })
+        .then(r => r.json())
+        .then(updatedActivity => dispatch(activityUpdated(updatedActivity)))
+    }
+
+    const handleDelete = () => {
+        fetch(`activities/${activity.id}`, {
+            method: "DELETE"
+        })
+        .then(r => {
+             if (r.ok) {
+                dispatch(activityRemoved(activity.id))
+                }
+            })
+    }
 
   return (
     <div>
@@ -20,9 +61,9 @@ const UserProfileActivity = ({ activity, user }) => {
             >
             <CardContent sx={{ flexGrow: 1 }}>
             <Typography gutterBottom variant="h5" className="activityUser">
-               {user.username}
+               {activity.user?.username}
             </Typography>
-            <Avatar src={user?.picture} />
+            <Avatar src={activity.user?.picture} />
             <Typography className="activityUser">
                 {activity?.created_at.slice(0, 10)}
             </Typography>
@@ -42,7 +83,23 @@ const UserProfileActivity = ({ activity, user }) => {
                 <br></br>
                 <br></br>
                 {activity?.upvotes === null ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
-            <span className="userEdit"><EditIcon fontSize="small"/></span><span><DeleteIcon fontSize="small"/></span>
+            <span className="userEdit"><EditIcon onClick={() => setToggle(toggle => !toggle)} className={classes.clikcableIcon} fontSize="small"/></span>
+            <span><DeleteIcon onClick={handleDelete} className={classes.clikcableIcon} fontSize="small"/></span>
+            {toggle ? 
+            <>
+            <form onSubmit={handleUpdate}>
+                <TextField
+                label="What Activity?"
+                id="sport"
+                variant="standard"
+                defaultValue={activity.sport}
+                onChange={e => setSport(e.target.value)}
+                />
+                <br></br>
+                <Button sx={{ color: "#FFA500"}} type="submit">save</Button>
+                </form>
+                </>
+              : null}
             </CardContent>
             </Card>
             </Grid>

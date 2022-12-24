@@ -1,14 +1,8 @@
 class ActivitiesController < ApplicationController
-    # before_action :authorize
+    before_action :authorize
 
     def index
         activities = Activity.all
-        render json: activities, status: 200
-    end
-
-    # maybe more appropiate for users controller?
-    def show
-        activities = find_user.activities.find(params[:id])
         render json: activities, status: 200
     end
 

@@ -18,16 +18,11 @@ const activitiesSlice = createSlice({
             state.activities.push(action.payload)
         },
         activityUpdated(state, action) {
-                state.activities.map(activity => {
-                if (activity.id === action.payload.id) {
-                    activity = action.payload
-                } else {
-                    return activity
-                }
-            })   
+            const index = state.activities.findIndex(activity => activity.id === action.payload.id)
+            state.activities[index] = action.payload 
         },
         activityRemoved(state, action) {
-            state.activities.filter(activity => activity.id !== action.payload)
+            state.activities = state.activities.filter(activity => activity.id !== action.payload)
         },
         activityUpvoted(state, action) {
             state.activities.map(activity => {
