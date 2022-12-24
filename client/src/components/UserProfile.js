@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllGears, fetchGears } from "../features/gearsSlice"
 import { selectUser, userActivityAdded } from "../features/sessionSlice"
-import { activityAdded } from "../features/activitiesSlice"
+import { activityAdded, selectAllActivities } from "../features/activitiesSlice"
 import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -39,8 +39,8 @@ export default function UserCard(props) {
   const classes = useStyles()
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
+  const activities = useSelector(selectAllActivities)
   const gears = useSelector(selectAllGears)
-  const [myActivities, setMyActivities] = useState(user.activities)
   const [activityToggle, setActivityToggle] = useState(false)
   const [select, setSelect] = useState("")
   const [sport, setSport] = useState("")
@@ -52,7 +52,7 @@ export default function UserCard(props) {
     dispatch(fetchGears())
 }, [])
 
-console.log(user)
+  const myActivities = activities.filter(activity => activity.user.id === user.id)
 
   const renderMyActivities = myActivities.map(activity => (
     <UserProfileActivity key={activity.id} activity={activity} user={user}/>
