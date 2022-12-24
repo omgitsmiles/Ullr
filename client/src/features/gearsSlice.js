@@ -18,7 +18,7 @@ const gearsSlice = createSlice({
             state.gears.push(action.payload)
         },
         gearRemoved(state, action) {
-            state.gears.filter(gear => gear.id !== action.payload)
+            state.gears = state.gears.filter(gear => gear.id !== action.payload)
         },
     },
 
