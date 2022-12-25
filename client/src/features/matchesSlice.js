@@ -30,6 +30,8 @@ const matchesSlice = createSlice({
     }
 })
 
+export const { matchAdded } = matchesSlice.actions
+
 export const selectAllMatches = (state) => state.match.matches
 
 export default matchesSlice.reducer

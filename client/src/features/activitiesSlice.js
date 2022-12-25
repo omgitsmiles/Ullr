@@ -27,7 +27,7 @@ const activitiesSlice = createSlice({
         activityUpvoted(state, action) {
             state.activities.map(activity => {
             if (activity.id === action.payload.id) {
-                activity.upvotes = action.payload.upvotes
+            return activity.upvotes = action.payload.upvotes
             } else {
                 return activity
             }
