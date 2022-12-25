@@ -5,6 +5,7 @@ import gearReducer from "./features/gearsSlice"
 import groupReducer from "./features/groupsSlice"
 import usersSlice from "./features/usersSlice.js"
 import matchesSlice from "./features/matchesSlice.js"
+import messagesSlice from "./features/messagesSlice.js"
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
         group: groupReducer,
         users: usersSlice,
         match: matchesSlice,
+        message: messagesSlice
     },
 })
 

@@ -24,15 +24,15 @@ const MessagesContainer = () => {
         dispatch(fetchUsers())
     }, [])
 
-    console.log(currentUser)
-    console.log(select)
-
     const allUsersExceptCurr = users.filter(user => user.username !== currentUser.username)
 
     const renderUsers = allUsersExceptCurr.map(user => user.username)
 
-    const renderMatches = myMatches.map(friends => (
-        <p key={friends.id} onClick={() => setTogglePop(togglePop => !togglePop)}>{friends.friend.username}</p>
+    const renderMatches = myMatches.map(match => (
+        <>
+            <p key={match.id} onClick={() => setTogglePop(togglePop => !togglePop)}>{match.friend.username}</p>
+            {togglePop ? <Messages friend={match.friend} user={match.user}/> : null}
+        </>
     ))
 
     const createMatch = () => {
@@ -59,8 +59,6 @@ const MessagesContainer = () => {
 
   return (
     <div>
-        <h2>Friends List</h2>
-        {renderMatches}
         <Button onClick={() => setToggle(toggle => !toggle)} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }} endIcon={<GroupAddIcon />}>Add Friend</Button>
         <br></br>
         <br></br>
@@ -79,7 +77,8 @@ const MessagesContainer = () => {
             <Button onClick={createMatch} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }} endIcon={<SendIcon />}>Add</Button>
         </>
         : null}
-        {togglePop ? <Messages /> : null}
+          <h2>Friends List</h2>
+        {renderMatches}
     </div>
   )
 }

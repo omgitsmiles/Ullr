@@ -18,7 +18,7 @@ class MatchesController < ApplicationController
     end
 
     def find_user
-        user = User.find(session[:user_id])
+        user = User.find_by(id: session[:user_id])
     end
 
 end
