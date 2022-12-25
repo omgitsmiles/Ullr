@@ -7,16 +7,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // })
 
 export const autoLogin = createAsyncThunk("user/autoLogin", () => {
-    return fetch ("/me")
+    return fetch("/me")
     .then(r => r.json())
     .then(user => user)
 })
 
-const userSlice = createSlice({
+const sessionSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
-        activities: [],
         isLoading: false
     },
 
@@ -26,9 +25,6 @@ const userSlice = createSlice({
         },
         logout(state) {
             state.user = null
-        },
-        userActivityAdded(state, action) {
-            state.user.activities.push(action.payload)
         },
 
     extraReducers: {
@@ -40,13 +36,12 @@ const userSlice = createSlice({
             state.isLoading = false
             state.user = action.payload
         },
-    },
-
+        },
     }
 })
 
-export const { login, logout, userActivityAdded } = userSlice.actions
+export const { login, logout } = sessionSlice.actions
 
-export const selectUser = (state) => state.user.user
+export const selectUser = (state) => state.session.user
 
-export default userSlice.reducer
+export default sessionSlice.reducer

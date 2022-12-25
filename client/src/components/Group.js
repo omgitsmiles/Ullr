@@ -9,7 +9,6 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 
 const Group = ({ groups }) => {
     const { id } = useParams()

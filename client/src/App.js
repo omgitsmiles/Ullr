@@ -13,6 +13,7 @@ import GroupsContainer from './components/GroupsContainer'
 import Messages from './components/Messages'
 import UserProfile from './components/UserProfile'
 import Group from './components/Group'
+import MessagesContainer from './components/MessagesContainer'
 
 function App() {
   const dispatch = useDispatch()
@@ -40,7 +41,7 @@ function App() {
         <Route path="/user/feed" element={<UserFeed />}/>
         <Route path="/user/groups" element={<GroupsContainer />}/>
         <Route path="/user/gear" element={<Gear />}/>
-        <Route path="/user/messages" element={<Messages />}/>
+        <Route path="/user/messages" element={<MessagesContainer />}/>
       </Routes>
     </div>
   );

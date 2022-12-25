@@ -1,5 +1,5 @@
 class MatchSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :friend_id
   has_one :user
   has_one :friend
 end

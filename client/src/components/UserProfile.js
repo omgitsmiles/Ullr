@@ -125,7 +125,6 @@ export default function UserCard(props) {
           {user.location}
         </Typography>{" "}
       </CardContent>
-        <Button>update</Button>
         <Button onClick={() => setActivityToggle(activityToggle => !activityToggle)}>add new activity</Button>
     </Card>
     <br></br>

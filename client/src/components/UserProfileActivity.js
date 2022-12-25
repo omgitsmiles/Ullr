@@ -82,7 +82,7 @@ const UserProfileActivity = ({ activity }) => {
                 <br></br>
                 <br></br>
                 <br></br>
-                {activity?.upvotes === null ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}
+                {activity?.upvotes === null ? "(0) Kudos" : `${activity?.upvotes} Kudos`}
             <span className="userEdit"><EditIcon onClick={() => setToggle(toggle => !toggle)} className={classes.clikcableIcon} fontSize="small"/></span>
             <span><DeleteIcon onClick={handleDelete} className={classes.clikcableIcon} fontSize="small"/></span>
             {toggle ? 

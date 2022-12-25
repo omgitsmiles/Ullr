@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
     before_action :authorize, only: :update
 
+    def index
+        users = User.all
+        render json: users, status: 200
+    end
+
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
