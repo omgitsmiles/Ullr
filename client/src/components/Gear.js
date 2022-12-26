@@ -13,11 +13,6 @@ const Testgear = () => {
     const gears = useSelector(selectAllGears)
     const [toggleShoe, setToggleShoe] = useState(false)
     const [toggleBike, setToggleBike] = useState(false)
-    const [formData, setFormData] = useState({
-        shoes: "",
-        bike: "",
-        picture: ""
-    })
 
     useEffect(() => {
         dispatch(fetchGears())

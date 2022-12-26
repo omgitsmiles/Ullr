@@ -54,7 +54,6 @@ const MessagesContainer = () => {
                 .then(error => console.log(error))
             }
         })
-        
     }
 
   return (
@@ -74,7 +73,7 @@ const MessagesContainer = () => {
             renderInput={(params) => <TextField {...params} label="Search Athletes" />}
             />
             <br></br> 
-            <Button onClick={createMatch} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }} endIcon={<SendIcon />}>Add</Button>
+            <Button onClick={createMatch} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>Add</Button>
         </>
         : null}
           <h2>Friends List</h2>

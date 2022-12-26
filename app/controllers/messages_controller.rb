@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     end
 
     def create
-        message = find_user.create!(message_params)
+        message = find_user.messages.create!(message_params)
         render json: message, status: 201
     end
 
