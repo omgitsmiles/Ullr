@@ -297,9 +297,6 @@ span {
   transition: all 0.4s cubic-bezier(0.565, -0.26, 0.255, 1.41);
   cursor: default;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 @media screen and (max-width: 800px) {
   .msg img {
@@ -319,9 +316,6 @@ span {
   float: right;
   cursor: default;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 .msg time:before {
   content: " ";

@@ -19,15 +19,14 @@ const messageSlice = createSlice({
         }
     }, 
 
-    extraReducers: {
-        [fetchMessages.pending]: (state) => {
-            state.isLoading = true
-        },
-
-        [fetchMessages.fulfilled]: (state, action) => {
-            state.isLoading = false
-            state.messages = action.payload
-        }
+    extraReducers: (builder) => {
+       builder.addCase(fetchMessages.pending, (state) => {
+        state.isLoading = true
+       })
+       builder.addCase(fetchMessages.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.messages = action.payload
+       })
     }
 })
 

@@ -26,9 +26,8 @@ const Messages = ({ friend, user }) => {
     })
     .then(r => r.json())
     .then(newMessage => dispatch(messageAdded(newMessage)))
+    setMessage("")
   }
-
-  console.log(currentUser)
 
   return (
     <div className="chatWindow">

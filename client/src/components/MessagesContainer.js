@@ -29,8 +29,8 @@ const MessagesContainer = () => {
 
     const renderMatches = myMatches.map(match => (
         <>
-            <p key={match.id} onClick={() => setTogglePop(togglePop => !togglePop)}>{match.friend.username}</p>
-            {togglePop ? <Messages friend={match.friend} user={match.user}/> : null}
+            <p onClick={() => setTogglePop(togglePop => !togglePop)}>{match.friend.username}</p>
+            {togglePop ? <Messages key={match.id} friend={match.friend} user={match.user}/> : null}
         </>
     ))
 

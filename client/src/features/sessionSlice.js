@@ -26,17 +26,19 @@ const sessionSlice = createSlice({
         logout(state) {
             state.user = null
         },
-
-    extraReducers: {
-        [autoLogin.pending]: (state) => {
-            state.isLoading = true
-        }, 
-        [autoLogin.fulfilled]: (state, action) => {
-            console.log(action)
-            state.isLoading = false
+        userUpdated(state, action) {
             state.user = action.payload
         },
-        },
+
+    extraReducers: (builder) => {
+        builder.addCase(autoLogin.pending, (state) => {
+            state.isLoading = true
+        })
+        builder.addCase(autoLogin.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.user = action.payload
+        })
+        }
     }
 })
 

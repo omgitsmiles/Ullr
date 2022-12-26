@@ -33,9 +33,9 @@ const useStyles = makeStyles(theme => ({
   cardContent: {
     padding: theme.spacing(2, 0, 0, 0),
   },
-}));
+}))
 
-export default function UserCard(props) {
+export default function UserCard() {
   const classes = useStyles()
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
@@ -88,11 +88,11 @@ export default function UserCard(props) {
     <Card
       variant="outlined"
       className={classes.card}
-      style={{ display: "inline-block" }}
+      style={{ display: "contents" }}
     >
       <CardMedia align="center">
         <Avatar
-          alt="Remy Sharp"
+          alt={user.username}
           src={user.picture}
           className={classes.large}
         />
@@ -104,7 +104,6 @@ export default function UserCard(props) {
           variant="h6"
           align="center"
         >
-          {props?.content?.name?.first} {props?.content?.name?.last}
         </Typography>
         <Typography
           className={classes.text}

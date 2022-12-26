@@ -23,14 +23,14 @@ const groupsSlice = createSlice({
         },
     },
 
-    extraReducers: {
-        [fetchGroups.pending]: (state) => {
-            state.isLoading = true
-        },
-        [fetchGroups.fulfilled]: (state, action) => {
-            state.isLoading = false
-            state.groups = action.payload
-        },
+    extraReducers: (builder) => {
+      builder.addCase(fetchGroups.pending, (state) => {
+        state.isLoading = true
+      })
+      builder.addCase(fetchGroups.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.groups = action.payload
+      })
     }
 })
 
