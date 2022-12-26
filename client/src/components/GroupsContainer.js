@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { fetchGroups, selectAllGroups, groupAdded } from '../features/groupsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../features/sessionSlice';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Groups from './Groups';
 
 const GroupsContainer = () => {
   const allGroups = useSelector(selectAllGroups)
-  const user = useSelector(selectUser)
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
   const [formData, setFormData] = useState({
@@ -18,7 +16,7 @@ const GroupsContainer = () => {
 
   useEffect(() => {
     dispatch(fetchGroups())
-  }, [])
+  }, [dispatch])
 
   const handleChange = (e) => {
     setFormData({

@@ -7,7 +7,6 @@ import Button from '@mui/material/Button'
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
-import SendIcon from '@mui/icons-material/Send'
 import { selectUser } from '../features/sessionSlice'
 
 const MessagesContainer = () => {
@@ -22,7 +21,7 @@ const MessagesContainer = () => {
     useEffect(() => {
         dispatch(fetchMatches())
         dispatch(fetchUsers())
-    }, [])
+    }, [dispatch])
 
     const allUsersExceptCurr = users.filter(user => user.username !== currentUser.username)
 

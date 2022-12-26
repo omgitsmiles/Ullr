@@ -21,11 +21,11 @@ function App() {
 
   useEffect(() => {
     dispatch(autoLogin())
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(fetchGroups())
-  }, [])
+  }, [dispatch])
 
   if (!user) return <Login />
 
@@ -33,7 +33,7 @@ function App() {
     <div className="App">
         <NavBar />
       <Routes>
-        <Route path="/" element={<Login />}/>
+        <Route exact path="/login" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/user/profile" element={<UserProfile />}/>
         <Route path="/groups/:id" element={<Group groups={groups}/>}/>

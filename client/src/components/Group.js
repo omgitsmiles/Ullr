@@ -19,7 +19,7 @@ const Group = ({ groups }) => {
     useEffect(() => {
         const singleGroup = groups.find(group => group.id === parseInt(id))
         setGroup(singleGroup)
-    }, [groups])
+    }, [groups, id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -33,11 +33,7 @@ const Group = ({ groups }) => {
         .then(r => r.json())
         .then(post => dispatch(postAdded(post)))
     }
-
-    const handleLikes = () => {
-        // have to grab
-    }
-
+    
   return (
     <div>
         <h3>{group?.name}</h3>

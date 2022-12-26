@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { login, selectUser } from '../features/sessionSlice';
+import { useDispatch } from 'react-redux'
+import { login } from '../features/sessionSlice';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -33,7 +32,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-    const user = useSelector(selectUser)
     const dispatch = useDispatch()
     const [error, setError] = useState([])
     const navigate = useNavigate()
@@ -128,10 +126,14 @@ export default function Login() {
                 value={formData.password}
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+              {error.error ? (
+                <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+               {error.error.map(err => (
+                     <strong key={err}>{err}</strong>
+                ))}
+                </Alert>
+              ) : null}
               <Button
                 type="submit"
                 fullWidth
@@ -141,11 +143,6 @@ export default function Login() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link href="/signup" variant="body2">
                     {"Don't have an account? Sign Up"}

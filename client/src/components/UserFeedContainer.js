@@ -11,7 +11,7 @@ const UserFeed = () => {
 
     useEffect(() => {
       dispatch(fetchActivities())
-    }, [])
+    }, [dispatch])
 
     const renderActivities = allActivities.map(activity => (
         <UserFeedActivity key={activity?.id} activity={activity}/>

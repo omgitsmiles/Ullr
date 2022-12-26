@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { gearAdded, gearRemoved, selectAllGears, fetchGears } from '../features/gearsSlice'
-import { selectUser } from '../features/sessionSlice'
+import { selectAllGears, fetchGears } from '../features/gearsSlice'
 import { Button } from '@mui/material';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import PopUpShoes from './PopUpShoes';
@@ -9,14 +8,13 @@ import PopUpBike from './PopUpBike';
 
 const Testgear = () => {
     const dispatch = useDispatch()
-    const user = useSelector(selectUser)
     const gears = useSelector(selectAllGears)
     const [toggleShoe, setToggleShoe] = useState(false)
     const [toggleBike, setToggleBike] = useState(false)
 
     useEffect(() => {
         dispatch(fetchGears())
-    }, [])
+    }, [dispatch])
 
     const renderShoes = gears.map(gear => (
         <div key={gear.id}>

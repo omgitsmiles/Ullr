@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchMessages, selectMyMessages, messageAdded } from '../features/messagesSlice'
+import { fetchMessages, selectAllMessages, messageAdded } from '../features/messagesSlice'
+import { selectUser } from '../features/sessionSlice'
 import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send'
 
 const Messages = ({ friend, user }) => {
   const dispatch = useDispatch()
-  const currUserMessages = useSelector(selectMyMessages)
+  const currentUser = useSelector(selectUser)
+  const allMessages = useSelector(selectAllMessages)
   const [message, setMessage] = useState("")
 
   useEffect(() => {
     dispatch(fetchMessages())
-  }, [])
-
-  // fetchMessages fetches all messages
-  // filter messages to be only relevant to the current user and the friend in the convo
-  // will use the user obj to make the comparison 
-  // need to find way to filter all messages by friend_id to relevant convo
-
-  console.log(currUserMessages)
-  console.log(friend)
+  }, [dispatch])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,10 +28,12 @@ const Messages = ({ friend, user }) => {
     .then(newMessage => dispatch(messageAdded(newMessage)))
   }
 
+  console.log(currentUser)
+
   return (
     <div className="chatWindow">
         <ul className="chat" id="chatList">
-          {currUserMessages.map(data => (
+          {allMessages.find(user => user.user_id === currentUser.id) ? allMessages.map(data => (
             <div key={data.id}>
               {user.id === data.user_id ? (
                 <li className="self">
@@ -55,7 +51,7 @@ const Messages = ({ friend, user }) => {
                 </li>
               )} 
             </div>
-           ))} 
+           )) : "Start a conversation" } 
         </ul>
         <div className="chatInputWrapper">
           <form onSubmit={handleSubmit}>

@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react'
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import TextField from '@mui/material/TextField';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useDispatch, useSelector } from 'react-redux';
-import { activityUpdated, activityUpvoted } from '../features/activitiesSlice';
-import { selectUser } from '../features/sessionSlice'; 
+import { useDispatch } from 'react-redux';
+import { activityUpvoted } from '../features/activitiesSlice';
 
 const UserFeedActivity = ({ activity }) => {
     const dispatch = useDispatch()

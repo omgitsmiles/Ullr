@@ -30,10 +30,6 @@ const gearsSlice = createSlice({
                 state.gears = action.payload
                 state.status = false
             },
-            [fetchGears.rejected](state, action) {
-                state.gears = action.payload
-                state.status = false
-            }
         }
 })
 

@@ -6,9 +6,6 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
-import { useDispatch } from 'react-redux';
-import { logout } from "../features/sessionSlice";
-
 
 
 export const SidebarData = [
@@ -50,7 +47,7 @@ export const SidebarData = [
   },
   {
     title: "Logout",
-    path: "/",
+    path: "/signup",
     icon: <LogoutIcon />,
     cName: "nav-text",
   },

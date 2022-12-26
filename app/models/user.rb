@@ -7,4 +7,7 @@ class User < ApplicationRecord
     has_many :gears, through: :activities
     has_many :posts
     has_many :groups, through: :posts
+    validates :username, presence: true, uniqueness: true
+    validates :location, presence: true
+    validates :picture, presence: true
 end

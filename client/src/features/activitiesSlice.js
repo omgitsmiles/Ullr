@@ -36,15 +36,15 @@ const activitiesSlice = createSlice({
     },
 
     extraReducers: {
-            [fetchActivities.pending]: (state) => {
+            [fetchActivities.pending](state) {
                 state.isLoading = true
             },
-            [fetchActivities.fulfilled]: (state, action) => {
+            [fetchActivities.fulfilled](state, action) {
                 state.isLoading = false
                 state.activities = action.payload
             },
-    }   
-})
+        }   
+    })
 
 export const { activityAdded, activityUpdated, activityRemoved, activityUpvoted } = activitiesSlice.actions
 

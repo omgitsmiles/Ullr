@@ -50,7 +50,7 @@ export default function UserCard(props) {
 
   useEffect(() => {
     dispatch(fetchGears())
-  }, [])
+  }, [dispatch])
 
   const myActivities = activities.filter(activity => activity.user.id === user.id)
 

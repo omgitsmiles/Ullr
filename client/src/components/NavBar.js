@@ -27,7 +27,7 @@ function Navbar() {
           </Link>
           <span className="notifications">
           <Tooltip title="Messages">
-              <Badge badgeContent={4} color="info">
+              <Badge color="info">
               <IconButton onClick={hanldeMessages} sx={{ p: 0 }}>
                 <MailIcon />
               </IconButton>
