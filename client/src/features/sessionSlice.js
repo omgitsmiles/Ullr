@@ -42,7 +42,7 @@ const sessionSlice = createSlice({
     }
 })
 
-export const { login, logout } = sessionSlice.actions
+export const { login, logout, userUpdated } = sessionSlice.actions
 
 export const selectUser = (state) => state.session.user
 

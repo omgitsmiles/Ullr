@@ -1,12 +1,16 @@
-import React from 'react'
-import { selectUser } from '../features/sessionSlice'
+import React, { useState } from 'react'
+import { selectUser, userUpdated } from '../features/sessionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail"
 import LocationOnIcon from "@material-ui/icons/LocationOn"
+import TextField from '@mui/material/TextField';
 
 const UserSettings = () => {
     const user = useSelector(selectUser)
+    const dispatch = useDispatch()
+    const [toggle, setToggle] = useState(false)
+    const [location, setLocation] = useState("")
     const useStyles = makeStyles(theme => ({
         text: {
           margin: theme.spacing(0, 0, 0.5),
@@ -33,8 +37,17 @@ const UserSettings = () => {
       }))
       const classes = useStyles()
 
-      const handleUpdate = () => {
-        console.log("hi")
+      const handleUpdate = (e) => {
+        e.preventDefault()
+        fetch("/user/update", {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({location: location})
+        })
+        .then(r => r.json())
+        .then(updatedUser => dispatch(userUpdated(updatedUser)))
       }
 
   return (
@@ -51,7 +64,7 @@ const UserSettings = () => {
           className={classes.large}
         />
         <div>
-        <Button onClick={handleUpdate}>Update</Button>
+        <Button onClick={() => setToggle(toggle => !toggle)}>Update</Button>
         </div>
       </CardMedia>
       <CardContent className={classes.cardContent}>
@@ -82,6 +95,28 @@ const UserSettings = () => {
         </Typography>{" "}
       </CardContent>
     </Card>
+    {toggle ? 
+    <form onSubmit={handleUpdate}>
+          <TextField
+            label="Password"
+            id="sport"
+            variant="standard"
+            />
+          <TextField
+            label="Picture"
+            id="elapsed_time"
+            variant="standard"
+            />
+          <TextField
+            label="Location"
+            id="location"
+            variant="standard"
+            onChange={e => setLocation(e.target.value)}
+            />
+          <br></br>
+          <br></br>
+          <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>submit</Button>
+          </form>  : null}
     </div>
   )
 }

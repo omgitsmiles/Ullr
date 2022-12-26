@@ -4,8 +4,8 @@ import { selectAllGears, fetchGears } from "../features/gearsSlice"
 import { selectUser } from "../features/sessionSlice"
 import { activityAdded, selectAllActivities } from "../features/activitiesSlice"
 import { makeStyles, Card, CardContent, CardMedia, Avatar, Typography, Button } from "@material-ui/core"
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail"
 import LocationOnIcon from "@material-ui/icons/LocationOn"
 import UserProfileActivity from "./UserProfileActivity"
@@ -171,7 +171,7 @@ export default function UserCard() {
                   sx={{ width: 300 }}
                   onSelect={e => setSelect(e.target.value)}
                   renderInput={(params) => <TextField {...params} label="Gear" />}
-                  /> 
+            /> 
           <Button type="submit" variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }}>submit</Button>
           </form>
         </>: null}
