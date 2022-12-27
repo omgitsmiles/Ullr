@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllGears, fetchGears } from '../features/gearsSlice'
 import { Button } from '@mui/material';
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
 import PopUpShoes from './PopUpShoes';
 import PopUpBike from './PopUpBike';
 

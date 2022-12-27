@@ -67,7 +67,7 @@ function Navbar() {
                     <span>{item.title}</span>
                   </Link>
                 </li>
-              );
+              )
             })}
             <Tooltip title="logout">
               <IconButton onClick={handleLogout}>

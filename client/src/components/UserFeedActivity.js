@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { activityUpvoted } from '../features/activitiesSlice';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -6,8 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import { useDispatch } from 'react-redux';
-import { activityUpvoted } from '../features/activitiesSlice';
+import IconButton from '@mui/material/IconButton'
 
 const UserFeedActivity = ({ activity }) => {
     const dispatch = useDispatch()
@@ -53,7 +54,7 @@ const UserFeedActivity = ({ activity }) => {
                 Gear: {activity.users_gear}
             </Typography>
                 <br></br>
-                <button onClick={handleLikes}><ThumbUpAltIcon /></button>
+                <IconButton onClick={handleLikes}><ThumbUpAltIcon /></IconButton>
                 <br></br>
                 <br></br>
                 {activity?.upvotes === null ? "Be first to give kudos!" : `${activity?.upvotes} Kudos`}

@@ -3,7 +3,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
 import SnowshoeingIcon from '@mui/icons-material/Snowshoeing';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -44,11 +43,5 @@ export const SidebarData = [
     path: "/user/settings",
     icon: <SettingsIcon />,
     cName: "nav-text",
-  },
-  // {
-  //   title: "Logout",
-  //   path: "/signup",
-  //   icon: <LogoutIcon />,
-  //   cName: "nav-text",
-  // },
+  }
 ];
