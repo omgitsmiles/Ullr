@@ -4,15 +4,16 @@ import * as AiIcons from "react-icons/ai"
 import { Link, useNavigate } from "react-router-dom"
 import { SidebarData } from "./SidebarData"
 import { Avatar } from "@material-ui/core"
-import { selectUser } from "../features/sessionSlice"
-import { useSelector } from "react-redux"
+import { selectUser, logout } from "../features/sessionSlice"
+import { useDispatch, useSelector } from "react-redux"
 import Badge from '@mui/material/Badge'
-import MailIcon from '@mui/icons-material/Mail'
+import LogoutIcon from '@mui/icons-material/Logout'
 import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import "../App.css";
 
 function Navbar() {
+  const dispatch = useDispatch()
   const currentUser = useSelector(selectUser)
   const navigate = useNavigate()
   const [sidebar, setSidebar] = useState(false)
@@ -23,6 +24,18 @@ function Navbar() {
     navigate("/user/profile")
   }
 
+  const handleLogout = () => {
+    fetch("/logout", {
+      method: "DELETE"
+    })
+    .then(r => {
+      if (r.ok) {
+        dispatch(logout(currentUser))
+      }
+    })
+    navigate("/")
+  }
+ 
   return (
     <div>
         <div className="navbar">
@@ -56,6 +69,11 @@ function Navbar() {
                 </li>
               );
             })}
+            <Tooltip title="logout">
+              <IconButton onClick={handleLogout}>
+                <LogoutIcon/>
+              </IconButton>
+            </Tooltip>
           </ul>
         </nav>
     </div>

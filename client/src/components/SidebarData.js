@@ -45,10 +45,10 @@ export const SidebarData = [
     icon: <SettingsIcon />,
     cName: "nav-text",
   },
-  {
-    title: "Logout",
-    path: "/signup",
-    icon: <LogoutIcon />,
-    cName: "nav-text",
-  },
+  // {
+  //   title: "Logout",
+  //   path: "/signup",
+  //   icon: <LogoutIcon />,
+  //   cName: "nav-text",
+  // },
 ];

@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
     before_action :authorize
 
     def create
-        group = find_user.groups.create!(group_params)
+        group = Group.create!(group_params)
         render json: group, status: 201
     end
     

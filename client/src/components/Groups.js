@@ -7,6 +7,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 
+
 const Groups = ({ group }) => {
     const navigate = useNavigate()
     const groupLink = (groupID) => {

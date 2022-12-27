@@ -3,6 +3,7 @@ import { fetchGroups, selectAllGroups, groupAdded } from '../features/groupsSlic
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 import Groups from './Groups';
 
 const GroupsContainer = () => {
@@ -48,7 +49,7 @@ const GroupsContainer = () => {
 
   return (
     <div>
-        <h2>Groups</h2>
+        <Diversity3Icon fontSize="large"/>
         <br></br>
         <Button sx={{ color: "#FFA500" }} onClick={() => setToggle(toggle => !toggle)}>Create Group</Button>
         <br></br>
