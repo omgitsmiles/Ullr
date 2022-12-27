@@ -96,7 +96,6 @@ export default function Login() {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: '#FFA500' }}>
-              {/* <LockOutlinedIcon /> */}
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in to Ullr

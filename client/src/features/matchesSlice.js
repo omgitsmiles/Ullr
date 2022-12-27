@@ -19,14 +19,14 @@ const matchesSlice = createSlice({
         },
     },
 
-    extraReducers: {
-        [fetchMatches.pending]: (state) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchMatches.pending, (state) => {
             state.isLoading = true
-        },
-        [fetchMatches.fulfilled]: (state, action) => {
+        })
+        builder.addCase(fetchMatches.fulfilled, (state, action) => {
             state.isLoading = false
             state.matches = action.payload
-        },
+        })
     }
 })
 

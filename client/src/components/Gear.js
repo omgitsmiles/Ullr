@@ -37,7 +37,7 @@ const Testgear = () => {
 
   return (
     <div>
-        <h3><SettingsSuggestIcon fontSize="large"/></h3>
+        <h3 data-testid="gear"><SettingsSuggestIcon fontSize="large"/></h3>
         <Button onClick={handleToggleShoe} sx={{ color: '#FFA500'}}>add shoes</Button>
         <span>
         <Button onClick={handleToggleBike} sx={{ color: '#FFA500'}}>add a bike</Button>
