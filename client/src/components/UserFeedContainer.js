@@ -4,7 +4,7 @@ import { selectAllActivities, fetchActivities } from "../features/activitiesSlic
 import UserFeedActivity from "./UserFeedActivity"
 import CircularProgress from '@mui/material/CircularProgress';
 
-const UserFeed = () => {
+const UserFeed = ({ user }) => {
     const dispatch = useDispatch()
     const allActivities = useSelector(selectAllActivities)
     const loadingState = useSelector(state => state.activity.isLoading)

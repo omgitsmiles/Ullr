@@ -376,3 +376,7 @@ input.textarea {
   color: #666;
   font-weight: 400;
 }
+
+.friendsList {
+  cursor: pointer
+}

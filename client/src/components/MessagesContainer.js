@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectAllUsers, fetchUsers } from '../features/usersSlice'
 import { selectAllMatches, fetchMatches, matchAdded } from '../features/matchesSlice'
+import { selectUser } from '../features/sessionSlice'
 import Messages from './Messages'
 import Button from '@mui/material/Button'
+import PersonIcon from '@mui/icons-material/Person';
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
-import { selectUser } from '../features/sessionSlice'
 
 const MessagesContainer = () => {
     const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const MessagesContainer = () => {
 
     const renderMatches = myMatches.map(match => (
         <>
-            <p onClick={() => setTogglePop(togglePop => !togglePop)}>{match.friend.username}</p>
+            <p onClick={() => setTogglePop(togglePop => !togglePop)} className="friendsList"> <PersonIcon/> {match.friend.username}</p>
             {togglePop ? <Messages key={match.id} friend={match.friend} user={match.user}/> : null}
         </>
     ))
