@@ -50,7 +50,7 @@ Taking my love for the Strava application and applied my version of the fitness 
 - [Zabzuki](https://github.com/Zabzuki/user-profile-card) for the user profile card look
 - [Brian Codex](https://github.com/briancodex) for the navbar
 - [CometChat Pro](https://github.com/cometchat-pro-tutorials) for the UI of the Direct Message feature
-- [Jeremy Hansen](https://github.com/JeremeyHansen) for the references to create matches and ability to direct message another user
+- [Jeremy Hansen](https://github.com/JeremeyHansen) for the references to create matches and ability to Direct Message another user
 
 ### Contact
 Paolo Alberca [Email](mailto:paolo.alberca@gmail.com) - [LinkedIn](https://www.linkedin.com/in/paolo-alberca-069384b8/)
