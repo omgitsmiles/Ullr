@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :activities, except: [:show, :update, :destroy]
   resources :gears
 
-  # patch '/user/activities/:id', to: 'activities#update'
+  patch '/user/activities/:id', to: 'activities#update'
   
-  # delete '/user/activities/:id', to: 'activities#destroy'
+  delete '/user/activities/:id', to: 'activities#destroy'
 
   patch '/upvotes/:id', to: 'activities#upvotes'
 

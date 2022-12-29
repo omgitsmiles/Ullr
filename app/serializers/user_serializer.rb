@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :activities
   has_many :gears
   has_many :messages
+  has_many :posts
 end

@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { postAdded } from '../features/groupsSlice'
-import { Button } from '@mui/material'
+import { Button, Icon } from '@mui/material'
 import { Avatar } from '@mui/material'
+import { selectUser } from '../features/sessionSlice'
 import TextField from '@mui/material/TextField'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import IconButton from '@mui/material/IconButton'
+import EditIcon from '@mui/icons-material/Edit'
 
 const Group = ({ groups }) => {
     const { id } = useParams()
+    const currentUser = useSelector(selectUser)
+    const [toggle, setToggle] = useState(false)
     const dispatch = useDispatch()
     const [group, setGroup] = useState()
     const [newPost, setNewPost] = useState("")
@@ -71,7 +76,7 @@ const Group = ({ groups }) => {
                     </Typography>
                     <Typography>
                         {post.post}
-                    </Typography>
+                </Typography>
             </div>
                ))}
             </CardContent>

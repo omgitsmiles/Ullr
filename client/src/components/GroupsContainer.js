@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { fetchGroups, selectAllGroups, groupAdded } from '../features/groupsSlice';
+import React, { useState } from 'react'
+import { selectAllGroups, groupAdded } from '../features/groupsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 import Groups from './Groups';
 
-const GroupsContainer = () => {
-  const allGroups = useSelector(selectAllGroups)
+const GroupsContainer = ({ groups }) => {
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     description: ""
   })
-
-  useEffect(() => {
-    dispatch(fetchGroups())
-  }, [dispatch])
 
   const handleChange = (e) => {
     setFormData({
@@ -43,7 +38,7 @@ const GroupsContainer = () => {
     })
   }
 
-  const renderGroups = allGroups.map(group => (
+  const renderGroups = groups.map(group => (
     <Groups key={group.id} group={group} />
   ))
 

@@ -27,6 +27,10 @@ const PopUpShoes = ({ toggle }) => {
         })
         .then(r => r.json())
         .then(newGear => dispatch(gearAdded(newGear)))
+        setFormData({
+            shoes: "",
+            picture: ""
+        })
     }
 
 

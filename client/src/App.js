@@ -34,7 +34,7 @@ function App() {
         <Route path="/user/profile" element={<UserProfile />}/>
         <Route path="/groups/:id" element={<Group groups={groups}/>}/>
         <Route path="/user/feed" element={<UserFeed />}/>
-        <Route path="/user/groups" element={<GroupsContainer />}/>
+        <Route path="/user/groups" element={<GroupsContainer groups={groups}/>}/>
         <Route path="/user/gear" element={<Gear />}/>
         <Route path="/user/messages" element={<MessagesContainer />}/>
         <Route path="/user/settings" element={<UserSettings />}/>

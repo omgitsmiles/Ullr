@@ -9,6 +9,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 
 const MessagesContainer = () => {
     const dispatch = useDispatch()
@@ -48,7 +50,7 @@ const MessagesContainer = () => {
             if (r.ok) {
                 r.json()
                 .then(newFriend => dispatch(matchAdded(newFriend)))
-                alert("Friend added!")
+                
             } else {
                 r.json()
                 .then(error => console.log(error))
