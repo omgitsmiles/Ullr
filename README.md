@@ -25,9 +25,9 @@
 Taking my love for the Strava application and applied my version of the fitness tracker app with added social media functionality. Along with added your physical acitivites for you and your friends to see, Interactivity can range from celebrating their runs/bike rides, Forming groups of similiar interests, and private messaging between users. Ullr is meant to be a encompassing platform to celebrate and collaborate with other athletes. 
 
 ### Models
-![Models](https://github.com/omgitsmiles/BookEnds/blob/main/DBDiagram.png)
+![Models](https://github.com/omgitsmiles/Ullr/blob/main/Screenshot%202022-12-29%20at%202.05.19%20PM.png)
 
-- Backend built out using these three models to populate the tables using the User, Books, Review classes
+- Using Ruby
 
 ### User Experience
 
