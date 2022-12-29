@@ -20,9 +20,9 @@
 - Run npm install --prefix client in seperate terminal for frontend
 - Run npm start --prefix client to start frontend server
 
-### About BookEnds
+### About Ullr
 
-Taking a simple idea of creating a place for users to share their books and thoughts in one place through BookEnds. After creating an account, the user has the ability of leaving a review from books that was already populated, or create a new instance of a book for others to see and review. 
+Taking my love for the Strava application and applied my version of the fitness tracker app with added social media functionality. Along with added your physical acitivites for you and your friends to see, Interactivity can range from celebrating their runs/bike rides, Forming groups of similiar interests, and private messaging between users. Ullr is meant to be a encompassing platform to celebrate and collaborate with other athletes. 
 
 ### Models
 ![Models](https://github.com/omgitsmiles/BookEnds/blob/main/DBDiagram.png)
