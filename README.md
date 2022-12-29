@@ -1,7 +1,7 @@
 
 # Ullr
 
-![Homepage](https://github.com/omgitsmiles/BookEnds/blob/main/BookEnds.png)
+![Homepage](https://github.com/omgitsmiles/Ullr/blob/main/Screenshot%202022-12-29%20at%201.53.52%20PM.png)
 ## Built with
 
 - React.js
