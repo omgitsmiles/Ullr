@@ -27,7 +27,11 @@ Taking my love for the Strava application and applied my version of the fitness 
 ### Models
 ![Models](https://github.com/omgitsmiles/Ullr/blob/main/Screenshot%202022-12-29%20at%202.05.19%20PM.png)
 
-- Using Ruby
+- Create 7 models putting focus on user.
+- User first many-to-many relationship with the Activities model & Gear(shoes or bikes) model
+- Users second many-to-many relationship relationship revolving around the Post model and Groups.
+- To create the ability to DM another user, the match model was created with references the user_id and assigns a friend_id to another user with a reference attribute on the model, referencing the class User id. 
+- Using the match model user & friend ids as identifiers, both users can send and receiving messages with each other. 
 
 ### User Experience
 
