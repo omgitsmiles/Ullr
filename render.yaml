@@ -1,7 +1,7 @@
 databases:
   - name: Ullr
     databaseName: react_rails_api_project_template_development
-    user: Ullr
+    user: react_rails_api_project_template_development
 
 services:
   - type: web
