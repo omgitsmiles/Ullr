@@ -1,7 +1,7 @@
 databases:
   - name: Ullr
-    databaseName: Ullr
-    user: Ullr
+    databaseName: ULLR
+    user: ULLR
 
 services:
   - type: web
