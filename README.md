@@ -12,6 +12,9 @@
 
 ### Get started
 
+- Deployed site: https://ullr.onrender.com
+- Login Credentials: omgitsmiles, password: phase5
+
 - Fork & Clone this repository
 - Run Bundle install in terminal
 - Run rails db:migrate

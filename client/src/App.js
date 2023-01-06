@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser, autoLogin } from './features/sessionSlice'
@@ -17,13 +17,22 @@ import UserSettings from './components/UserSettings'
 
 function App() {
   const dispatch = useDispatch()
-  const user = useSelector(selectUser)
+  const [user, setUser] = useState(null)
   const groups = useSelector(selectAllGroups)
 
   useEffect(() => {
-    dispatch(autoLogin())
+    fetch("/me")
+    .then(r => {
+      if (r.ok) {
+        r.json()
+        .then(user => setUser(user))
+      }
+    })
     dispatch(fetchGroups())
   }, [dispatch])
+
+  console.log(user)
+
 
   return (
     <div className="App">

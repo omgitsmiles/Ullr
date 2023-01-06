@@ -15,9 +15,6 @@ const Messages = ({ friend, user }) => {
     dispatch(fetchMessages())
   }, [dispatch])
   
-  console.log(allMessages)
-  console.log(currentUser)
-
   const handleSubmit = (e) => {
     e.preventDefault()
     fetch("/messages", {
