@@ -21,13 +21,14 @@ function App() {
   const groups = useSelector(selectAllGroups)
 
   useEffect(() => {
-    fetch("/me")
-    .then(r => {
-      if (r.ok) {
-        r.json()
-        .then(user => setUser(user))
-      }
-    })
+    // fetch("/me")
+    // .then(r => {
+    //   if (r.ok) {
+    //     r.json()
+    //     .then(user => setUser(user))
+    //   }
+    // })
+    dispatch(autoLogin())
     dispatch(fetchGroups())
   }, [dispatch])
 
