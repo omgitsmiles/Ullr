@@ -69,8 +69,6 @@ export default function SignUp() {
     })
   }
 
-  console.log(error)
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

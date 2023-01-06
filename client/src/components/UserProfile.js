@@ -92,8 +92,8 @@ export default function UserCard() {
     >
       <CardMedia align="center">
         <Avatar
-          alt={user.username}
-          src={user.picture}
+          alt={user?.username}
+          src={user?.picture}
           className={classes.large}
         />
       </CardMedia>
@@ -112,7 +112,7 @@ export default function UserCard() {
           align="center"
         >
           <AlternateEmailIcon className={classes.avatar} fontSize="small" />
-          {user.username}
+          {user?.username}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -121,7 +121,7 @@ export default function UserCard() {
           align="center"
         >
           <LocationOnIcon className={classes.avatar} fontSize="small" />
-          {user.location}
+          {user?.location}
         </Typography>{" "}
       </CardContent>
         <Button onClick={() => setActivityToggle(activityToggle => !activityToggle)}>add new activity</Button>
