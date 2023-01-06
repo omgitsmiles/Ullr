@@ -32,7 +32,7 @@ const MessagesContainer = () => {
 
     const renderMatches = myMatches.map(match => (
         <>
-            <p onClick={() => setTogglePop(togglePop => !togglePop)} className="friendsList"> <PersonIcon/> {match.friend.username}</p>
+            <p onClick={() => setTogglePop(togglePop => !togglePop)} className="friendsList" key={match.id}> <PersonIcon/> {match.friend.username}</p>
             {togglePop ? <Messages key={match.id} friend={match.friend} user={match.user}/> : null}
         </>
     ))

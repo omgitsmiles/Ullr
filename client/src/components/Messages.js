@@ -14,6 +14,9 @@ const Messages = ({ friend, user }) => {
   useEffect(() => {
     dispatch(fetchMessages())
   }, [dispatch])
+  
+  console.log(allMessages)
+  console.log(currentUser)
 
   const handleSubmit = (e) => {
     e.preventDefault()

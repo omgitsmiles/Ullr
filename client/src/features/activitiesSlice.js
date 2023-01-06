@@ -29,7 +29,7 @@ const activitiesSlice = createSlice({
             if (activity.id === action.payload.id) {
             return activity.upvotes = action.payload.upvotes
             } else {
-                return activity
+            return activity
             }
             })   
         },
