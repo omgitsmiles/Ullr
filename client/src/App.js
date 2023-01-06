@@ -17,7 +17,7 @@ import UserSettings from './components/UserSettings'
 
 function App() {
   const dispatch = useDispatch()
-  const [user, setUser] = useState(null)
+  const user = useSelector(selectUser)
   const groups = useSelector(selectAllGroups)
 
   useEffect(() => {
