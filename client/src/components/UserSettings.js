@@ -59,8 +59,8 @@ const UserSettings = () => {
     >
       <CardMedia align="center">
         <Avatar
-          alt={user.username}
-          src={user.picture}
+          alt={user?.username}
+          src={user?.picture}
           className={classes.large}
         />
         <div>
@@ -82,7 +82,7 @@ const UserSettings = () => {
           align="center"
         >
           <AlternateEmailIcon className={classes.avatar} fontSize="small" />
-          {user.username}
+          {user?.username}
         </Typography>{" "}
         <Typography
           className={classes.text}
@@ -91,7 +91,7 @@ const UserSettings = () => {
           align="center"
         >
           <LocationOnIcon className={classes.avatar} fontSize="small" />
-          {user.location}
+          {user?.location}
         </Typography>{" "}
       </CardContent>
     </Card>
