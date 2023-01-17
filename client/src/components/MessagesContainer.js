@@ -14,7 +14,7 @@ import MuiAlert from '@mui/material/Alert'
 
 const MessagesContainer = () => {
     const dispatch = useDispatch()
-    const [toggle, setToggle] = useState(false)
+    const [toggle, setToggle] = useState({})
     const [select, setSelect] = useState("")
     const [togglePop, setTogglePop] = useState(false)
     const currentUser = useSelector(selectUser)
@@ -26,14 +26,21 @@ const MessagesContainer = () => {
         dispatch(fetchUsers())
     }, [dispatch])
 
+    const toggleFunction = (id) => {
+        setToggle({
+            ...toggle,
+            [id]: !toggle[id]
+        })
+    }
+
     const allUsersExceptCurr = users.filter(user => user.username !== currentUser.username)
 
     const renderUsers = allUsersExceptCurr.map(user => user.username)
 
     const renderMatches = myMatches.map(match => (
         <div>
-            <p onClick={() => setTogglePop(togglePop => !togglePop)} className="friendsList" key={match.id}> <PersonIcon/> {match.friend.username}</p>
-            {<Messages key={match.id} toggle={togglePop} friend={match.friend} user={match.user}/>}
+            <p onClick={() => toggleFunction(match.id)} className="friendsList" key={match.id}> <PersonIcon/> {match.friend.username}</p>
+            {toggle[match.id] ? <Messages friend={match.friend} user={match.user}/> : null}
         </div>
     ))
 
