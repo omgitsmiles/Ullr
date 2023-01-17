@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUser, autoLogin } from './features/sessionSlice'
+import { selectUser, autoLogin, login } from './features/sessionSlice'
 import { fetchGroups, selectAllGroups } from './features/groupsSlice'
 import './App.css'
 import Login from './components/Login'
@@ -21,14 +21,13 @@ function App() {
   const groups = useSelector(selectAllGroups)
 
   useEffect(() => {
-    // fetch("/me")
-    // .then(r => {
-    //   if (r.ok) {
-    //     r.json()
-    //     .then(user => setUser(user))
-    //   }
-    // })
-    dispatch(autoLogin())
+    fetch("/me")
+    .then(r => {
+      if (r.ok) {
+        r.json()
+        .then(user => dispatch(login(user)))
+      }
+    })
     dispatch(fetchGroups())
   }, [dispatch])
 

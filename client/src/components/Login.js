@@ -45,9 +45,9 @@ export default function Login() {
             ...formData,
             [e.target.name]: e.target.value})
     }
-  
-    const handleSubmit = (event) => {
-        event.preventDefault();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         fetch("/login", {
             method: "POST",
             headers: {

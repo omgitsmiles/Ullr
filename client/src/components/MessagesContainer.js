@@ -31,10 +31,10 @@ const MessagesContainer = () => {
     const renderUsers = allUsersExceptCurr.map(user => user.username)
 
     const renderMatches = myMatches.map(match => (
-        <>
+        <div>
             <p onClick={() => setTogglePop(togglePop => !togglePop)} className="friendsList" key={match.id}> <PersonIcon/> {match.friend.username}</p>
-            {togglePop ? <Messages key={match.id} friend={match.friend} user={match.user}/> : null}
-        </>
+            {<Messages key={match.id} toggle={togglePop} friend={match.friend} user={match.user}/>}
+        </div>
     ))
 
     const createMatch = () => {

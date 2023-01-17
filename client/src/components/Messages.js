@@ -5,7 +5,9 @@ import { selectUser } from '../features/sessionSlice'
 import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send'
 
-const Messages = ({ friend, user }) => {
+const Messages = ({ friend, user, toggle }) => {
+  // move toggle pop into here so open up singular chat window
+  console.log(toggle)
   const dispatch = useDispatch()
   const currentUser = useSelector(selectUser)
   const allMessages = useSelector(selectAllMessages)
@@ -44,6 +46,7 @@ const Messages = ({ friend, user }) => {
               ) : ( 
                 <li className="other">
                   <div className="msg">
+                {/* instead of friend.username, utilize the data to match the friend username */}
                     <p>{friend.username}</p>
                     <div className="message">{data.message}</div>
                   </div>
