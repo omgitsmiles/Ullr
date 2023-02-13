@@ -19,6 +19,8 @@ function App() {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
   const groups = useSelector(selectAllGroups)
+  
+  // test
 
   useEffect(() => {
     fetch("/me")
@@ -30,9 +32,6 @@ function App() {
     })
     dispatch(fetchGroups())
   }, [dispatch])
-
-  console.log(user)
-
 
   return (
     <div className="App">

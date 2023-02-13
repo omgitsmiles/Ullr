@@ -9,14 +9,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import GroupAddIcon from '@mui/icons-material/GroupAdd'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
-import Snackbar from '@mui/material/Snackbar'
-import MuiAlert from '@mui/material/Alert'
 
 const MessagesContainer = () => {
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState({})
     const [select, setSelect] = useState("")
-    const [togglePop, setTogglePop] = useState(false)
+    const [toggleAddFriend, setToggleAddFriend] = useState(false)
     const currentUser = useSelector(selectUser)
     const myMatches = useSelector(selectAllMatches)
     const users = useSelector(selectAllUsers)
@@ -37,10 +35,10 @@ const MessagesContainer = () => {
 
     const renderUsers = allUsersExceptCurr.map(user => user.username)
 
-    const renderMatches = myMatches.map(match => (
+    const renderMatches = myMatches.map((match, index) => (
         <div>
-            <p onClick={() => toggleFunction(match.id)} className="friendsList" key={match.id}> <PersonIcon/> {match.friend.username}</p>
-            {toggle[match.id] ? <Messages friend={match.friend} user={match.user}/> : null}
+            <p onClick={() => toggleFunction(match.id)} className="friendsList" key={match.id}> <PersonIcon/>{match.friend.username}</p>
+            {toggle[match.id] ? <Messages key={index} friend={match.friend} user={match.user}/> : null}
         </div>
     ))
 
@@ -67,10 +65,10 @@ const MessagesContainer = () => {
 
   return (
     <div>
-        <Button onClick={() => setToggle(toggle => !toggle)} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }} endIcon={<GroupAddIcon />}>Add Friend</Button>
+        <Button onClick={() => setToggleAddFriend(toggleAddFriend => !toggleAddFriend)} variant="outlined" sx={{ color: '#FFA500', backgroundColor: 'white', borderColor: '#FFA500' }} endIcon={<GroupAddIcon />}>Add Friend</Button>
         <br></br>
         <br></br>
-        {toggle ?
+        {toggleAddFriend ?
         <>
             <Autocomplete
             disablePortal

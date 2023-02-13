@@ -6,7 +6,6 @@ import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send'
 
 const Messages = ({ friend, user }) => {
-  // move toggle pop into here so open up singular chat window
   const dispatch = useDispatch()
   const currentUser = useSelector(selectUser)
   const allMessages = useSelector(selectAllMessages)
@@ -15,6 +14,18 @@ const Messages = ({ friend, user }) => {
   useEffect(() => {
     dispatch(fetchMessages())
   }, [dispatch])
+
+  //filter over all message to just between the user and friend id - currentConvo
+  //sort by stamp, render out the visual
+
+  const currentConvo = allMessages.filter(message => friend.id === message.friend_id)
+
+  console.log(currentConvo)
+
+  console.log(allMessages)
+  console.log("Friend", friend)
+  console.log("User", user)
+  console.log("Current User", currentUser)
   
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -30,10 +41,15 @@ const Messages = ({ friend, user }) => {
     setMessage("")
   }
 
+  //find in allmessages the user.user_id that matches current user id, if found render convo, else render "start convo"
+  //map over all messages
+  //in map if user.id matches the data.user_id then render the user name and current user messages
+  //else render the friends username and friends messages. 
+
   return (
     <div className="chatWindow">
         <ul className="chat" id="chatList">
-          {allMessages.find(user => user.user_id === currentUser.id) ? allMessages.map(data => (
+          {allMessages.find(user => user.user_id === user.id) ? currentConvo.map(data => (
             <div key={data.id}>
               {user.id === data.user_id ? (
                 <li className="self">
