@@ -15,9 +15,6 @@ const Messages = ({ friend, user }) => {
     dispatch(fetchMessages())
   }, [dispatch])
 
-  //filter over all message to just between the user and friend id - currentConvo
-  //sort by stamp, render out the visual
-
   const currentConvo = allMessages.filter(message => friend.id === message.friend_id)
 
   console.log(currentConvo)

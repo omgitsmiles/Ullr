@@ -19,8 +19,6 @@ function App() {
   const dispatch = useDispatch()
   const user = useSelector(selectUser)
   const groups = useSelector(selectAllGroups)
-  
-  // test
 
   useEffect(() => {
     fetch("/me")
