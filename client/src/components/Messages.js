@@ -42,6 +42,7 @@ const Messages = ({ friend, user }) => {
   //map over all messages
   //in map if user.id matches the data.user_id then render the user name and current user messages
   //else render the friends username and friends messages. 
+  //find models between allmsg, usermsg, and friendmsg
 
   return (
     <div className="chatWindow">

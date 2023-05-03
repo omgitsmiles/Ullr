@@ -22,7 +22,7 @@ const gearsSlice = createSlice({
         },
     },
 
-        extraReducers: (builder) =>{
+        extraReducers: (builder) => {
             builder.addCase(fetchGears.pending, (state) => {
                 state.isLoading = true
             })
