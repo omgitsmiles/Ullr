@@ -16,13 +16,13 @@ const Testgear = () => {
         dispatch(fetchGears())
     }, [dispatch])
 
-    const renderShoes = gears.map(gear => (
+    const renderShoes = gears?.map(gear => (
         <div key={gear.id}>
         <p>{gear.shoes}</p>
         </div>
     ))
 
-    const renderBikes = gears.map(gear => (
+    const renderBikes = gears?.map(gear => (
         <div key={gear.id}>
         <p>{gear.bike}</p>
         </div>
