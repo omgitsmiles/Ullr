@@ -16,13 +16,6 @@ const Messages = ({ friend, user }) => {
   }, [dispatch])
 
   const currentConvo = allMessages.filter(message => friend.id === message.friend_id)
-
-  console.log(currentConvo)
-
-  console.log(allMessages)
-  console.log("Friend", friend)
-  console.log("User", user)
-  console.log("Current User", currentUser)
   
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -125,14 +125,6 @@ export default function Login() {
                 value={formData.password}
                 autoComplete="current-password"
               />
-              {/* {error.error ? (
-                <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-               {error.map(err => (
-                     <strong key={err}>{err}</strong>
-                ))}
-                </Alert>
-              ) : null} */}
               <Button
                 type="submit"
                 fullWidth
